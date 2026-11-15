@@ -805,6 +805,7 @@ body:has(.nav)::after{display:none}
 .accor::before,.accor::after{content:"";flex:1;height:1.5px;background:#dfe4ee}
 .acclnk{display:block;margin:12px auto 0;font-size:14px;font-weight:600;color:var(--blue);text-align:center}
 .accerr:empty{min-height:0;margin:0}
+.accb.g.homeg{margin-top:12px;border:none;box-shadow:var(--sh);padding:18px 14px}
 .accerr{min-height:18px;margin-top:10px;font-size:14px;font-weight:600;color:var(--bad-ink)}
 .accerr.ok{color:var(--ok-ink)}
 </style>
@@ -4339,9 +4340,10 @@ function home(){
   if(store.status==='error')h+='<div class="note">Progress could not be saved. Check your connection and keep going, it will retry on the next answer.</div>';
   var R=ROLES[g];
   h+='<div class="role"><b>'+esc(R.t)+'</b><p>'+esc(R.en)+'</p></div>';
-  h+='<button class="special alt" onclick="go(\'progress\')"><div><b>Progress</b><span>Stats, streak and topics</span></div><em>Open</em></button>';
   h+='<button class="cta2 hard rndbtn" onclick="solveRandom()"'+(pool.length?'':' disabled')+'><b>Random case</b><span>'+rsub+'</span></button>';
   h+='<button class="cta2 hard rndbtn" onclick="openReports()"><b>Write a report</b><span>'+Object.keys(S.rp||{}).length+' of 10 done</span></button>';
+  h+='<button class="special alt" onclick="go(\'progress\')"><div><b>Progress</b><span>Stats, streak and topics</span></div><em>Open</em></button>';
+  h+=homeSignIn();
   return h;
 }
 
@@ -6129,6 +6131,10 @@ function accountHTML(){
     '<div class="accrow"><button class="accb" onclick="cloudEmail(false)">Sign in</button><button class="accb ghost" onclick="cloudEmail(true)">Create account</button></div>'+
     '<button class="acclnk" onclick="cloudForgot()">Forgot password?</button><div class="accerr" id="accErr"></div></div>';
   return h;
+}
+function homeSignIn(){
+  if(!cloud.on||!cloud.loaded||cloud.user||store.kind==='claude')return '';
+  return '<button class="accb g homeg" onclick="cloudGoogle()">'+GOOGLE_SVG+'<span>Sign in with Google</span></button><div class="accerr" id="accErr"></div>';
 }
 function accMsg(t,ok){var el=document.getElementById('accErr');if(!el)return;el.textContent=t||'';el.className='accerr'+(ok?' ok':'');}
 async function accRun(fn){
