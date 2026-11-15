@@ -814,7 +814,10 @@ body:has(.nav)::after{display:none}
 .tcard{background:var(--surface);border-radius:var(--r);padding:18px;margin-bottom:14px}
 .tcard.cur{box-shadow:0 0 0 2px var(--blue) inset}
 .tcard small{display:block;font-size:12px;font-weight:600;color:var(--blue);margin-bottom:4px}
-.tcard h2{margin:0 0 8px;font-size:20px;font-weight:700}
+.tcard .thead{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left}
+.tcard .thead em{font-style:normal;font-weight:600;color:var(--blue);white-space:nowrap}
+.tcard .tbody{margin-top:12px}
+.tcard h2{margin:0;font-size:20px;font-weight:700}
 .tcard p{margin:0 0 8px;font-size:15px}
 .tcard p.ru{color:var(--mute);font-size:14px}
 .tcard .tpath{margin:10px 0;font-size:14px}
@@ -6370,6 +6373,7 @@ function trackTopics(id){
   order.sort(function(a,b){return cnt[b]-cnt[a]||order.indexOf(a)-order.indexOf(b);});
   return order.slice(0,6);
 }
+function toggleTk(id){ui.tkOpen=ui.tkOpen||{};ui.tkOpen[id]=!ui.tkOpen[id];var y=$app.scrollTop;render();$app.scrollTop=y;}
 function tracksView(){
   var h='';
   if(TK)h+='<div class="top"><button class="back" onclick="go(\'home\')" aria-label="Back">'+BACK_SVG+'</button></div>';
@@ -6377,13 +6381,17 @@ function tracksView(){
   TRACKS.forEach(function(m){
     var d=dataFor(m.id),pr=trackProgress(m.id),cur=(m.id===TK);
     var lv=d.LEVELS,tag=cur?'Current track':(pr.started&&(pr.done>0||pr.xp>0)?'In progress':'New');
-    h+='<div class="tcard'+(cur?' cur':'')+'"><small>'+tag+'</small><h2>'+esc(m.name)+'</h2>'+
-      '<p>'+esc(m.en)+'</p><p class="ru">'+esc(m.ru)+'</p>'+
+    var open=!!(ui.tkOpen&&ui.tkOpen[m.id]),started=pr.started&&(pr.done>0||pr.xp>0);
+    h+='<div class="tcard'+(cur?' cur':'')+(open?' open':'')+'"><button class="thead" onclick="toggleTk(\''+m.id+'\')" aria-expanded="'+open+'"><div><small>'+tag+'</small><h2>'+esc(m.name)+'</h2></div><em>'+(open?'Hide':'Details')+'</em></button>';
+    if(open){
+      h+='<div class="tbody"><p>'+esc(m.en)+'</p><p class="ru">'+esc(m.ru)+'</p>'+
       '<div class="tpath"><b>Career path</b><span>'+esc(lv[0].n)+' to '+esc(lv[lv.length-1].n)+'</span></div>'+
       '<div class="chips">'+trackTopics(m.id).map(function(t){return '<span class="chip">'+esc(t)+'</span>';}).join('')+'</div>'+
       '<div class="tmeta"><span>'+pr.total+' levels</span><span>'+d.PLAN.length+' chapters</span><span>'+esc(m.company)+'</span></div>';
-    if(pr.started&&(pr.done>0||pr.xp>0))h+='<div class="tprog"><div class="bar"><i style="width:'+Math.round(pr.done/pr.total*100)+'%"></i></div><span>Chapter '+(pr.chap+1)+' of '+d.PLAN.length+', '+pr.done+' of '+pr.total+' levels, '+pr.xp+' XP</span></div>';
-    h+='<button class="cta'+(cur?' alt':'')+'" onclick="'+(cur?'go(\'home\')':'selectTrack(\''+m.id+'\')')+'">'+(cur?'Back to this track':((pr.started&&(pr.done>0||pr.xp>0))?'Continue':'Start this track'))+'</button></div>';
+      if(started)h+='<div class="tprog"><div class="bar"><i style="width:'+Math.round(pr.done/pr.total*100)+'%"></i></div><span>Chapter '+(pr.chap+1)+' of '+d.PLAN.length+', '+pr.done+' of '+pr.total+' levels, '+pr.xp+' XP</span></div>';
+      h+='<button class="cta'+(cur?' alt':'')+'" onclick="'+(cur?'go(\'home\')':'selectTrack(\''+m.id+'\')')+'">'+(cur?'Back to this track':(started?'Continue':'Start this track'))+'</button></div>';
+    }
+    h+='</div>';
   });
   return h;
 }
