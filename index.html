@@ -4118,9 +4118,9 @@ function answer(k){
   var gBefore=frontier();
   markActive();
   var base=(opt.p!==undefined)?opt.p:(opt.ok?(c.type==='special'?20:10):0);
-  var tier=base>=0.75*(c.type==='special'?20:10)?'best':(base>0?'part':'bad');
-  var gain=cur.retry?Math.round(base/2):base;
   var smx=0;st.options.forEach(function(x){if(x.p>smx)smx=x.p;});
+  var tier=base>=0.75*smx?'best':(base>0?'part':'bad');
+  var gain=cur.retry?Math.round(base/2):base;
   var weak=base<=0.3*smx;
   cur.weak=weak;
   cur.tier=tier;cur.gain=0;cur.lastR=opt.r||'';
@@ -6497,7 +6497,7 @@ var CAREER_VOCAB={
  ba:['requirements elicitation','acceptance criteria','business rule','interface contract','traceability matrix','capability map','target operating model']
 };
 function refineCareerCases(track,cases){
- var arcs=CAREER_ARCS[track],terms=CAREER_VOCAB[track];
+ var arcs=CAREER_ARCS[track],terms=CAREER_VOCAB[track],seenChapters={},previousTopic={};
  cases.forEach(function(c){
   var lv=Math.max(0,Math.min(6,c.level||0)),arc=arcs[lv],term=terms[lv];
   c.steps.forEach(function(st,si){
@@ -6521,11 +6521,13 @@ function refineCareerCases(track,cases){
    });
    if(!st.explain)st.explain='В профессиональной ситуации возможны несколько обоснованных решений. Сравни последствия, ограничения и качество коммуникации; высокий балл получает вариант, который лучше управляет риском и неопределённостью.';
    if(si===0){
-    st.msg='Career chapter '+(lv+1)+': '+arc[0]+'. '+arc[1]+'\n\n'+st.msg;
+    if(!seenChapters[lv]){st.msg='Career chapter '+(lv+1)+': '+arc[0]+'. '+arc[1]+'\n\n'+st.msg;seenChapters[lv]=true;}
+    else if(previousTopic[lv]&&previousTopic[lv]!==c.topic){st.msg='Previously, your team dealt with '+previousTopic[lv].toLowerCase()+'. Now the focus shifts to '+c.topic.toLowerCase()+'.\n\n'+st.msg;}
+    previousTopic[lv]=c.topic;
    }
    if(st.words&&st.words.length){
     var found=st.words.some(function(w){return w.w.toLowerCase()===term.toLowerCase();});
-    if(!found&&st.words.length<4)st.words.push({w:term,ru:'профессиональный термин: '+term,how:'Используй термин в обсуждении '+c.topic.toLowerCase()+' и оценивай его значение в контексте.',ex:'We should discuss '+term+' before making the final decision.'});
+    if(!found&&st.words.length<4)st.words.push({w:term,ru:'термин из '+c.topic,how:'Понятие из профессиональной практики; изучи его применимость к текущей задаче.',ex:'We should review '+term+' before making the final decision.'});
    }
   });
  });
