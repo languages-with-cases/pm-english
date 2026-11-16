@@ -4118,10 +4118,10 @@ function answer(k){
   var gBefore=frontier();
   markActive();
   var base=(opt.p!==undefined)?opt.p:(opt.ok?(c.type==='special'?20:10):0);
-  var tier=opt.ok?'best':(base>0?'part':'bad');
+  var tier=base>=0.75*(c.type==='special'?20:10)?'best':(base>0?'part':'bad');
   var gain=cur.retry?Math.round(base/2):base;
   var smx=0;st.options.forEach(function(x){if(x.p>smx)smx=x.p;});
-  var weak=!opt.ok&&base<=0.3*smx;
+  var weak=base<=0.3*smx;
   cur.weak=weak;
   cur.tier=tier;cur.gain=0;cur.lastR=opt.r||'';
   if(c.meters&&opt.e){
@@ -4139,8 +4139,8 @@ function answer(k){
       recPts(c,cur,base);
       S.done.push(key);
       S.xp+=gain;cur.gain=gain;
-      S.stats.a+=1;if(opt.ok)S.stats.c+=1;
-      var t=S.stats.t[c.topic]||[0,0];S.stats.t[c.topic]=[t[0]+1,t[1]+(opt.ok?1:0)];
+      S.stats.a+=1;if(base>=0.75*smx)S.stats.c+=1;
+      var t=S.stats.t[c.topic]||[0,0];S.stats.t[c.topic]=[t[0]+1,t[1]+(base>=0.75*smx?1:0)];
     }
     if(weak&&!c.ev&&S.pend.indexOf(c.id)===-1)S.pend.push(c.id);
   }
@@ -4148,7 +4148,7 @@ function answer(k){
   st.words.forEach(function(w){
     var k2=w.w.toLowerCase();
     if(S.seen.indexOf(k2)===-1)S.seen.push(k2);
-    if(opt.ok&&S.learned.indexOf(k2)===-1)S.learned.push(k2);
+    if(base>=0.75*smx&&S.learned.indexOf(k2)===-1)S.learned.push(k2);
   });
   if(cur.step+1>=c.steps.length)finishCase(cur);
   var gAfter=frontier();
@@ -4798,7 +4798,7 @@ function caseView(){
     h+='<div class="fb" id="fb">'+
       '<h3 class="'+hcls+'">'+head+'</h3>'+
       fx+
-      (st.explain?'<p>'+tw(st.explain)+'</p>':'')+
+      (o2.c?'<h4>Why this choice</h4><p>'+esc(o2.c)+'</p>':'')+(st.explain?'<p>'+tw(st.explain)+'</p>':'')+
       '<h4>Added to your dictionary</h4>'+
       '<div class="chips">'+st.words.map(function(w){return '<span class="chip">'+esc(w.w)+'</span>';}).join('')+'</div>'+
       endHtml+
@@ -6436,6 +6436,102 @@ function recPts(c,cur,base){
   if(prev===undefined)prev=(cur.retry&&stepDone(c,cur.step))?mx:0;
   S.pts[k]=Math.min(mx,Math.max(prev,base));
 }
+
+
+/* ================= PROFESSIONAL ENGLISH CASE REFINEMENT =================
+   Applies to all five tracks without changing case IDs or saved progress.
+   Alternative answers earn partial credit; a decision is not binary.
+*/
+var CAREER_ARCS={
+ product:[
+  ['Mobile onboarding','The Northwind Bank team is improving account activation. Your decisions shape the first-time customer journey.'],
+  ['Activation experiment','The onboarding release is live. The team must interpret early funnel data and prioritize fixes.'],
+  ['Retention and trust','Northwind is scaling its mobile app. Retention, fraud controls and customer trust now compete for capacity.'],
+  ['Cross-team launch','Several squads are preparing a new banking feature. You must balance risk, delivery and measurable outcomes.'],
+  ['Portfolio trade-offs','Northwind has multiple product bets and constrained engineering capacity. Your decisions affect other PMs.'],
+  ['Product operating model','The leadership team is aligning metrics, investment and product discovery across the bank.'],
+  ['Board strategy','Northwind faces new competition. You must defend the product strategy and its economic assumptions.']
+ ],
+ dev:[
+  ['Development environment','At Orbit, your team is preparing a merchant checkout release. Your first tickets affect the reliability of the build.'],
+  ['Code quality','The checkout release is progressing. Reviews, testing and maintainability determine whether the team can ship safely.'],
+  ['Production reliability','Orbit is gaining merchants. Performance, observability and incident response are now daily engineering concerns.'],
+  ['System design','Checkout traffic is rising. Your architecture decisions affect reliability, security and delivery speed.'],
+  ['Technical leadership','Several teams depend on shared services. You must align interfaces, technical debt and engineering standards.'],
+  ['Engineering organization','Orbit is expanding. Hiring, platform investment and operational maturity shape the next stage.'],
+  ['Technology strategy','Orbit is entering new markets. You must weigh resilience, platform costs and long-term technical risk.']
+ ],
+ pm:[
+  ['Client kickoff','At Atlas Digital, your team is launching a client website. Clear ownership and expectations will determine the schedule.'],
+  ['Delivery baseline','The project has started. Scope, dependencies and change requests need careful coordination.'],
+  ['Risk management','Several deliverables are slipping. You must protect the critical path and communicate trade-offs.'],
+  ['Complex delivery','Atlas now runs multiple workstreams for the same client. Decisions require integrated planning.'],
+  ['Program coordination','Your program spans several clients and teams. Resource conflicts and governance become more important.'],
+  ['Delivery operations','Atlas is scaling its delivery organization. Forecasting, process quality and escalation paths matter.'],
+  ['Operating strategy','Leadership expects predictable margins and delivery outcomes. You must defend investment and capacity choices.']
+ ],
+ an:[
+  ['Metrics foundations','At Pulse, the team is measuring marketplace growth. Metric definitions and source quality matter from day one.'],
+  ['Funnel analysis','The growth dashboard is live. You must diagnose activation and conversion without overstating the evidence.'],
+  ['Experimentation','Pulse is testing new discovery flows. You must interpret experiments and communicate uncertainty.'],
+  ['Decision analytics','Several teams rely on your analyses. Segmentation, causality and trade-offs shape decisions.'],
+  ['Analytics platform','Pulse is scaling. Data contracts, governance and consistent metrics matter across teams.'],
+  ['Analytics leadership','Your organization needs a reliable decision process, not just more dashboards.'],
+  ['Data strategy','Pulse is evaluating major investments. You must defend the evidence and the limits of the forecast.']
+ ],
+ ba:[
+  ['Requirements discovery','At Nordline Bank, your team is digitizing loan applications. Every requirement needs a clear business purpose.'],
+  ['Acceptance and scope','The loan workflow is being built. Edge cases, acceptance criteria and traceability become essential.'],
+  ['Process redesign','Operations and compliance disagree about the target workflow. You must resolve ambiguity without losing controls.'],
+  ['System integration','Nordline is integrating several systems. Interfaces, exception handling and ownership drive quality.'],
+  ['Analysis leadership','Several delivery teams depend on shared requirements. You must manage change and consistency.'],
+  ['Business architecture','Nordline is redesigning processes across departments. You must align capabilities, policies and systems.'],
+  ['Digital transformation','Executives are weighing a multi-year transformation. You must clarify business outcomes, constraints and risks.']
+ ]
+};
+var CAREER_VOCAB={
+ product:['activation rate','product discovery','retention cohort','opportunity sizing','guardrail metric','portfolio allocation','unit economics'],
+ dev:['development environment','regression test','observability','race condition','technical debt','service-level objective','platform strategy'],
+ pm:['stakeholder alignment','scope baseline','critical path','dependency mapping','resource allocation','delivery forecast','portfolio governance'],
+ an:['metric definition','conversion funnel','confidence interval','cohort analysis','data lineage','semantic layer','causal inference'],
+ ba:['requirements elicitation','acceptance criteria','business rule','interface contract','traceability matrix','capability map','target operating model']
+};
+function refineCareerCases(track,cases){
+ var arcs=CAREER_ARCS[track],terms=CAREER_VOCAB[track];
+ cases.forEach(function(c){
+  var lv=Math.max(0,Math.min(6,c.level||0)),arc=arcs[lv],term=terms[lv];
+  c.steps.forEach(function(st,si){
+   if(!st.options||!st.options.length)return;
+   var max=c.type==='special'?20:10;
+   var ranked=st.options.map(function(o,i){return {o:o,i:i,p:o.p===undefined?(o.ok?max:0):o.p};}).sort(function(a,b){return b.p-a.p;});
+   var top=ranked[0],runner=ranked[1];
+   if(runner&&runner.p>0){
+    // The alternative is defensible but carries an identifiable trade-off.
+    runner.o.p=Math.max(runner.p,Math.round(max*0.8));
+    runner.o.ok=false;
+   }
+   st.options.forEach(function(o){
+    if(o.p===undefined)o.p=o.ok?max:0;
+    if(!o.c){
+     o.c=o.ok?'Сильный подход: решение учитывает контекст, ограничения и последствия.':
+       o.p>=max*0.7?'Разумная альтернатива, но она оставляет важный риск или неопределённость.':
+       o.p>0?'Частично полезно, однако не закрывает ключевой риск ситуации.':
+       'Этот подход игнорирует существенное ограничение или создаёт ненужный риск.';
+    }
+   });
+   if(!st.explain)st.explain='В профессиональной ситуации возможны несколько обоснованных решений. Сравни последствия, ограничения и качество коммуникации; высокий балл получает вариант, который лучше управляет риском и неопределённостью.';
+   if(si===0){
+    st.msg='Career chapter '+(lv+1)+': '+arc[0]+'. '+arc[1]+'\n\n'+st.msg;
+   }
+   if(st.words&&st.words.length){
+    var found=st.words.some(function(w){return w.w.toLowerCase()===term.toLowerCase();});
+    if(!found&&st.words.length<4)st.words.push({w:term,ru:'профессиональный термин: '+term,how:'Используй термин в обсуждении '+c.topic.toLowerCase()+' и оценивай его значение в контексте.',ex:'We should discuss '+term+' before making the final decision.'});
+   }
+  });
+ });
+}
+refineCareerCases('product',PMSNAP.CASES);
+Object.keys(TRACK_JSON).forEach(function(id){refineCareerCases(id,TRACK_JSON[id].cases);});
 
 /* ================= BOOT ================= */
 snapPM();
