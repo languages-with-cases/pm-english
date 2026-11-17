@@ -43,3 +43,12 @@ The browser test uses the `playwright` Node package (`npm install --no-save --pa
 The data test checks all keys, incomplete/incorrect answers, explicit alternate orders, and independent arithmetic for the funnel, dependency-aware priority rule, Gantt schedule and SQL join. The browser test completes all 15 exercises correctly and incorrectly, edits selections, retries, checks fixed option order, reloads progress, switches tracks, checks legacy state/case behavior, keyboard controls, six narrow layouts, and a touch-enabled phone context. Screenshots go to `/tmp/pm-english-qa/`.
 
 Remote fonts and the existing Firebase SDK are blocked by the browser test. Local persistence and cloud-state merge behavior are tested; a real signed-in Firebase round trip and physical iOS/Android devices require a separate manual check. The new practice itself makes no API calls.
+
+## Product chapters 1–2: task-three pilot
+
+```sh
+node tests/career-practice.test.cjs
+node tests/career-practice-browser.cjs
+```
+
+This pilot has 12 distinct data-driven variants, only at chapter-local even levels in the first two Product chapters. Its tests independently check arithmetic, dependency order and precise slot scoping, then use the normal case → tone → task-three flow. They cover failed/incomplete answers, edits/retries, legacy XP flags, unchanged chapter points, reload, three-attempt skipping, touch and keyboard, and unchanged third tasks outside the pilot. The existing Additional practice tests remain applicable.

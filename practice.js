@@ -4,6 +4,7 @@ function practiceTasks(track) {
 }
 function practiceMergeDone(a, b) {
   var known = PRACTICE_DATA.map(function(t) { return t.id; });
+  if (typeof CAREER_PRACTICE_DATA !== 'undefined') known = known.concat(CAREER_PRACTICE_DATA.map(function(t) { return t.id; }));
   return (Array.isArray(a) ? a : []).concat(Array.isArray(b) ? b : []).filter(function(id, i, all) {
     return typeof id === 'string' && known.indexOf(id) >= 0 && all.indexOf(id) === i;
   });
@@ -33,14 +34,17 @@ function practiceListView() {
 function practiceShuffled(items) {
   return shuffle(items.length).map(function(i) { return items[i].id; });
 }
-function practiceStart(id) {
-  var task = practiceTasks(CUR_TRACK).filter(function(t) { return t.id === id; })[0];
-  if (!task) return;
-  ui.practice = {task:task, track:CUR_TRACK, index:0, finished:false, steps:task.steps.map(function(s) {
+function practiceCreateAttempt(task) {
+  return {task:task, track:CUR_TRACK, index:0, finished:false, steps:task.steps.map(function(s) {
     // Shuffle once for this attempt; rendering and edits never reshuffle.
     return {order:practiceShuffled(s.options || s.cards || s.left),
       rightOrder:s.right ? practiceShuffled(s.right) : [], selected:[], sequence:[], pairs:{}, active:null, checked:false, correct:false, error:''};
   })};
+}
+function practiceStart(id) {
+  var task = practiceTasks(CUR_TRACK).filter(function(t) { return t.id === id; })[0];
+  if (!task) return;
+  ui.practice = practiceCreateAttempt(task);
   ui.view = 'practice';
   practiceRender('pr-title');
 }
@@ -151,6 +155,10 @@ function practiceView() {
     if (store.status === 'error' || store.status === 'none') h += '<p role="alert">Progress could not be saved. / Не удалось сохранить прогресс. ' + (store.status === 'none' ? 'Разрешите хранилище браузера.' : 'Проверьте подключение; следующая запись повторит сохранение.') + '</p>';
     return h + '</section>';
   }
+  return h + practiceStepBody(p) + '</section>';
+}
+function practiceStepBody(p) {
+  var task = p.task, h = '';
   var s = task.steps[p.index], st = p.steps[p.index];
   h += '<p class="sub">Step ' + (p.index+1) + ' / ' + task.steps.length + '</p>' + task.artifacts.map(practiceArtifact).join('') +
     '<h2 id="pr-prompt" tabindex="-1" lang="ru">' + esc(s.prompt) + '</h2>';
@@ -164,7 +172,7 @@ function practiceView() {
     if (s.response) h += '<blockquote lang="en">' + esc(s.response) + '</blockquote>';
     h += '</section>' + practiceButton('next','',p.index+1 === task.steps.length ? 'See result' : 'Next step','class="cta"') + practiceButton('retry','','Try again','class="cta ghost"');
   }
-  return h + '</section>';
+  return h;
 }
 function practiceRender(focus) {
   var y = $app.scrollTop;
@@ -181,12 +189,19 @@ function practiceAction(action, id) {
   if (action === 'start') return practiceStart(id);
   var p = ui.practice;
   if (!p || p.track !== CUR_TRACK) return;
+  if (p.embedded) {
+    if (!ui.cur || !ui.cur.x || ui.view !== 'case' || ui.cur.x.practiceAttempt !== p) return;
+    if (action === 'lesson-finish') return careerPracticeComplete();
+    if (action === 'retry') return careerPracticeStart(ui.cur);
+    if (ui.cur.x.stage !== 'careerPractice') return;
+  }
   if (action === 'retry') return practiceStart(p.task.id);
   if (p.finished) return;
   var s = p.task.steps[p.index], st = p.steps[p.index], focus = action + ':' + id;
   if (action === 'next' && st.checked) {
     if (p.index+1 < p.steps.length) { p.index++; return practiceRender('pr-prompt'); }
     p.finished = true;
+    if (p.embedded) return careerPracticeAfterAttempt(p);
     if (p.steps.every(function(step) { return step.correct; })) {
       S.practiceDone = practiceMergeDone(S.practiceDone, [p.task.id]);
       flush().then(function() {
