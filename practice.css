@@ -49,3 +49,6 @@
 
 /* Keep status categories reachable beside long Project career reports on phones. */
 .pr-career-project .pr-match > [aria-label="Matching targets"] {position:sticky;top:12px}
+
+/* Long BA criteria remain available while matching later scenarios. */
+.pr-career-ba .pr-match > [aria-label="Matching targets"] {position:sticky;top:12px;max-height:50vh;max-height:50dvh;overflow-y:auto}

@@ -200,3 +200,24 @@ Verification stage: PASS.
 - Real signed-in Firebase round trips and physical mobile hardware were not tested. Browser tests cover local storage and merge behavior while blocking remote Firebase/fonts.
 
 Ready for main and the existing GitHub Pages deployment. No new backend or input mechanism; the light-blue application background is preserved.
+
+## Business Analyst career task-three expansion — 2026-11-17
+
+Implementation stage: add 42 authored BA tasks at chapter-local levels 2, 4, 6, 8, 10 and 12 in all seven chapters. The 14 clarification questions include prepared stakeholder responses; 14 acceptance exercises map concrete boundary situations to Given / When / Then; 14 process exercises order the main path and then route observed exceptions. All use existing select/order/match handlers, stable per-attempt shuffling, feedback, retry, persistence and legacy XP rules. No new task mechanic, free input, API or backend.
+
+Progression: trainee measurement and boundaries → junior recipient ambiguity, sources and inclusive rules → independent BA NFRs, baseline/test traceability and compliance → senior lifecycle impact, mapping priority, timestamp contracts and independent steps → lead synthetic-data coverage, financial reconciliation and compound performance conditions → head-level evidence quality, privacy, minimum sufficient artifacts and demonstrated succession → CDO control populations, regulated partnerships, delegated authority and evidence surviving leadership change.
+
+Process order is checked against explicit prerequisite graphs; four later processes allow both orders of two independent steps. Exception routing uses stated first-failure priority with concrete observation tables. Acceptance policy facts and varied inputs are explicit; unvaried inputs remain valid. Clarification alternatives are useful professional questions but only one closes the stated gap. English materials/answers and Russian instructions/explanations follow the existing presentation.
+
+Integration changes only the BA track allowlist, new data registration and an isolated BA matching column that keeps long criteria reachable with keyboard/touch in a bounded scroll area. Product and Project data remain byte-equivalent as records (84-task hash); odd BA levels, case/tone stages, unaffected tracks/random practice, Additional, chapter thresholds, background and previous XP are unchanged. New/changed assets have versioned URLs.
+
+Independent checks pass for every key and all 126 actual track-scoped slots; browser, persistence and mobile verification is in progress.
+
+Verification stage: PASS.
+- `node tests/business-analyst-career.test.cjs`: all 42 BA slots, question/reply schema and comparable question lengths, every valid process topological order, first-failure exception routing, independent acceptance oracles for time/amount boundaries, ratios, load/sample adequacy, privacy, idempotency, migration priority and UTC delegation expiry. All 126 track/mode-scoped slots are checked; original 84 Product/Project records retain their exact hash. Questions and numerical/technical explanations were manually reviewed against their stated gaps and contracts.
+- `CAREER_TRACK=ba node tests/career-practice-browser.cjs`: all 42 native case → tone → task-three paths, failed/incomplete/edited/retried/correct attempts, fixed attempt order, mobile/touch widths, keyboard matching, reload, unchanged chapter points and exactly-once XP. Legacy awards, three-failure skip, completion union and original sentence tasks at odd BA levels/other tracks/random practice pass.
+- `node tests/business-analyst-career-ui.cjs`: all four alternative process orders pass; prepared stakeholder replies appear after checked questions; BA/Project/Product shared-ID completion stays isolated after reload. Three advanced phone layouts pass; all long criteria remain keyboard reachable in the bounded right-hand column, with a scrolling hint.
+- Existing Project UI, Product/Project unit suites, Additional unit/browser suites (15 tasks, 44 step checks) and the 470-case / 678-step original content contract suite pass on the combined app. No original content or progress denominators changed. JavaScript syntax and diff checks pass.
+- Remote Firebase/fonts are blocked in deterministic browser checks. Local save and merge logic were tested; real signed-in Firebase round trips and physical phone hardware were not exercised.
+
+Ready for main and existing GitHub Pages publication. No backend, free-input or unrelated-track content changes.

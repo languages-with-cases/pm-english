@@ -1,6 +1,6 @@
-/* Third-task variants: explicit even-level slots throughout the Product and Project careers. */
+/* Third-task variants: explicit even-level slots throughout the Product, Project and Business Analyst careers. */
 function careerPracticeFor(cur) {
-  if (!cur || (CUR_TRACK !== 'product' && CUR_TRACK !== 'pm') || cur.mode !== 'camp') return null;
+  if (!cur || (CUR_TRACK !== 'product' && CUR_TRACK !== 'pm' && CUR_TRACK !== 'ba') || cur.mode !== 'camp') return null;
   for (var i = 0; i < CAREER_PRACTICE_DATA.length; i++) {
     var task = CAREER_PRACTICE_DATA[i];
     if (task.track !== CUR_TRACK || task.caseId !== cur.c.id) continue;
@@ -49,9 +49,9 @@ function careerPracticeComplete() {
 function careerPracticeView(cur) {
   var p = cur.x.practiceAttempt, task = cur.x.careerTask;
   if (!p || !task) return '';
-  var h = lxHead(cur, 3) + '<section class="practice' + (task.track === 'pm' ? ' pr-career-project' : '') + '"><h1 id="pr-title" tabindex="-1">' + esc(task.title) +
+  var h = lxHead(cur, 3) + '<section class="practice' + (task.track === 'pm' ? ' pr-career-project' : task.track === 'ba' ? ' pr-career-ba' : '') + '"><h1 id="pr-title" tabindex="-1">' + esc(task.title) +
     '</h1><p lang="ru">' + esc(task.ru) + '</p>';
-  if (!p.finished) return h + practiceStepBody(p) + '</section>';
+  if (!p.finished) return h + (task.track === 'ba' && task.steps[p.index].kind === 'match' ? '<p class="pr-scroll-hint" lang="ru">Список ответов справа прокручивается отдельно. С клавиатуры: Tab до нужного ответа, затем Enter или пробел.</p>' : '') + practiceStepBody(p) + '</section>';
   h += '<section class="pr-feedback" role="status"><h2 id="pr-result" tabindex="-1">' +
     (p.passed ? 'Correct / Верно' : 'Not quite / Не совсем') + '</h2><p lang="ru">' +
     (p.passed ? 'Все шаги верны.' + (p.gain ? ' +' + p.gain + ' XP.' : ' XP за третий этап уже были начислены ранее.') :
