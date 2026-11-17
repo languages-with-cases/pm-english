@@ -237,3 +237,9 @@ Verification running: all unit/content/structure checks pass; initial five-track
 Refactor verification complete: all 126 embedded flows, 2,034 original case grades, 1,410 tone choices, 470 build targets, 15 Additional exercises, legacy reload, keyboard/touch and prior UI checks pass. Extended differential test passes all five complete track snapshots, config, 45 exact phone screenshots, preparation continuation, article quiz, all ten reports, all five event levels/star and overscroll. Extracted binary assets match original bytes.
 
 The content generator now reads a checksummed `content/baseline.json` captured from the immutable original revision rather than evaluating historical HTML; generated output remains deterministic and semantically unchanged. Architecture documents all 98 final repository files; a unit assertion prevents omissions. npm ci, structural/syntax checks, unit contracts, formatter and Markdown-link checks complete before release. Real signed-in Firebase, hardware microphone and physical phones remain outside the deterministic checks.
+
+## Published modular release verification — 2026-11-17 18:13:19 UTC
+
+PR #8 merged as 67c44220d9c0734fe20b7ae1a22fc098433d4487. Pages run 44144849542 succeeded; deploy job completed 2026-11-17T18:10:35Z. Live checks: all 57 HTML/JS/CSS/image resources match tested bytes, a pre-refactor-style progress payload loads, nine practice formats complete/persist, all 126 variants remain registered. Differential parity also passes against the actual published site: full five-track data/config, 45 exact phone frames and supplemental Product/scroll outcomes.
+
+This follow-up only records verified deployment results and updates the architecture reference; application code/assets/data are unchanged. No unfinished implementation.
