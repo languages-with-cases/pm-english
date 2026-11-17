@@ -1,7 +1,7 @@
 const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=require('node:fs');
 const base=process.env.CAREER_URL||'http://127.0.0.1:8000/';
 const track=process.env.CAREER_TRACK||'product';
-if(!['product','pm'].includes(track))throw Error('Unsupported career track');
+if(!['product','pm','ba'].includes(track))throw Error('Unsupported career track');
 (async()=>{
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox'],headless:true});
  try{
@@ -86,7 +86,7 @@ if(!['product','pm'].includes(track))throw Error('Unsupported career track');
  const prior=await page.evaluate(()=>S.xp);await solve(sample);assert.equal(await page.evaluate(()=>S.xp),prior);assert.equal(await page.evaluate(()=>ui.practice.gain),0);
  await tap('lesson-finish');
  // Existing three-attempt skip behavior remains available without granting completion or XP.
- const orderTask=tasks.find(t=>t.format==='priority'||t.format==='status');await firstTwo(await startLesson(track,orderTask.caseId));const noGain=await page.evaluate(()=>S.xp);
+ const orderTask=tasks.find(t=>t.format==='priority'||t.format==='status'||t.format==='acceptance');await firstTwo(await startLesson(track,orderTask.caseId));const noGain=await page.evaluate(()=>S.xp);
  for(let i=1;i<=3;i++){await solve(orderTask,true);assert.equal(await page.evaluate(()=>ui.cur.x.practiceTries),i);if(i<3){assert.equal(await page.locator('[data-pr-action="lesson-finish"]').count(),0);await tap('retry');}}
  assert.equal(await page.evaluate(()=>S.xp),noGain);assert.equal(await page.evaluate(id=>S.practiceDone.includes(id),orderTask.id),false);
  await tap('lesson-finish');assert.equal(await page.evaluate(()=>ui.view),'levels');
@@ -100,7 +100,7 @@ if(!['product','pm'].includes(track))throw Error('Unsupported career track');
  // A zero-XP legacy replacement completion also survives the existing cloud/local union.
  const union=await page.evaluate(id=>{const a=defaultState(),b=defaultState();a.xp=10;b.xp=20;a.practiceDone=[id];return better(a,b).practiceDone.includes(id);},sample.id);assert.ok(union);
  // Native keyboard operation inside a career order task.
- const advancedOrder=tasks.filter(t=>t.format==='priority'||t.format==='status').at(-1);
+ const advancedOrder=tasks.filter(t=>t.format==='priority'||t.format==='status'||t.format==='acceptance').at(-1);
  await page.setViewportSize({width:1200,height:900});await firstTwo(await startLesson(track,advancedOrder.caseId));
  if(advancedOrder.steps[0].kind==='match'){
   for(const item of advancedOrder.steps[0].left){await page.locator(`[data-pr-action="left"][data-pr-id="${item.id}"]`).focus();await page.keyboard.press('Enter');await page.locator(`[data-pr-action="right"][data-pr-id="${advancedOrder.steps[0].key[item.id]}"]`).focus();await page.keyboard.press('Space');}

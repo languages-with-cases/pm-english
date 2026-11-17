@@ -64,3 +64,15 @@ node tests/career-practice-browser.cjs
 ```
 
 All seven Project chapters replace task three at levels 2, 4, 6, 8, 10 and 12: 42 authored variants, 14 each of dependency/Gantt analysis, scope-response selection and status matching. Independent tests propagate schedule changes from the displayed baseline and authorized windows; validate every binding role/cost/date/margin/cash/control limit; exercise matching keys; derive actual slots from PLAN; and lock all 42 Product task data against changes. Browser coverage includes incomplete and excessive selections, pair changes and reusable categories, full case → tone → task-three paths, failed/successful retries, legacy XP, reload, shared-ID track isolation, 32-day Gantt keyboard scrolling and original twelve-day Additional charts.
+
+## Business Analyst career
+
+```sh
+node tests/business-analyst-career.test.cjs
+CAREER_TRACK=ba node tests/career-practice-browser.cjs
+node tests/business-analyst-career-ui.cjs
+```
+
+All seven BA chapters replace task three at levels 2/8 with clarification questions and prepared stakeholder replies, 4/10 with acceptance-criteria matching, and 6/12 with main-path ordering plus exception routing. There are 42 distinct tasks. Independent tests enumerate every permitted topological process order, derive first-failure routes from visible gates and observations, and recompute acceptance keys from approved policy facts (strict/inclusive limits, ratios, maturity/sample conditions, privacy, idempotency, mapping and UTC authority expiry). The original 84 Product/Project records are locked by hash.
+
+Browser tests cover all native BA case → tone → task-three flows, failed/incomplete/edited/retried answers, XP and chapter-score compatibility, saved reload, touch and keyboard. Focused UI checks exercise all four alternate process orders, stakeholder replies, three-track shared-ID isolation and long Given / When / Then criteria in a bounded, keyboard-scrollable target column. Original Additional exercises and other tracks keep their existing presentation.
