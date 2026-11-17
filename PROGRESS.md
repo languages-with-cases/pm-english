@@ -121,3 +121,7 @@ The user authorized publishing both changes. PR #1 is merged into the career bra
 - All career/practice scripts and the practice stylesheet are included once. JavaScript syntax and diff checks pass.
 - GitHub Pages configuration confirmed: `main`, repository root; public URL `https://languages-with-cases.github.io/pm-english/`.
 - The user explicitly authorized updating the live version. Combined release is ready for main and the existing Pages deployment; deployment success and served assets will be checked after merge.
+
+## Background update — 2026-11-17
+
+Changed the app background from light lavender `#E6E8FF` to light blue `#E6F3FF`, including the matching transparent gradients above navigation and word-screen actions. Verified computed html/body background on Home, Levels, Words, Progress and Additional practice in 375px Chromium; diff checks pass. User requested the change to the active application.
