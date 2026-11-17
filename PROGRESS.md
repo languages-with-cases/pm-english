@@ -148,3 +148,35 @@ Scope requested: only the first two Product Management chapters. Chapter-local l
 Implementation: 12 authored variants (four per existing Product format) in `career-practice-data.js`; an explicit slot/mode guard in `career-practice.js`; shared attempt creation and step renderer reused from Additional practice. The existing lesson header remains Task 3 of 3. Main case points, PLAN, chapter thresholds and the first two tasks are unchanged. Completion reuses the prior text-task award slot (+3 XP, existing retry rule); previous sentence XP is not awarded again. Embedded IDs use existing completion persistence/union. After three failed attempts, the stage can be skipped without XP, as with the previous sentence task. No new backend or free input.
 
 Checks so far: independent data/key arithmetic passes for all 12 variants; runtime guard rejects every out-of-scope case/track/mode. Mobile/touch browser walkthroughs pass all 12 lessons from case through tone to embedded task, with incomplete/wrong answers, edits, retry, fixed attempt order, completion, return to levels and reload. Chapter points remain unchanged; legacy award flags prevent duplicate XP. Skip-after-three, keyboard ordering, ordinary sentence-task controls and zero-XP completion union also pass. Full regression also passes: all 15 Additional tasks (44 correct/incorrect step checks and touch/reload checks), 2,034 existing career choices, 1,410 tone choices and ten scenario paths. Original career content data, Additional content and styles remain unchanged.
+
+## Product career expansion — 2026-11-17
+
+Implementation stage: extend only Product Management to all seven chapters. Add 30 authored variants at chapter-local levels 2, 4, 6, 8, 10 and 12 in chapters 3–7; keep the published 12 pilot variants byte-equivalent as data. Each chapter now has six replacements, two per Product format in the new chapters; total 42 tasks, 14 per format. Odd levels, case/tone stages, other tracks, random practice, Additional, chapter score thresholds and XP rules are unchanged. Reuse the existing career-practice controller and shared click-only handlers; extend its explicit slot validation and version the changed data/controller URLs for returning users.
+
+Difficulty progression:
+- Chapter 3, area ownership: multiple prerequisites, confidence-adjusted value, a minimum commercial experiment hurdle and conditional funnel denominators.
+- Chapter 4, cross-team initiatives: mandatory controls, two binding guardrails, scoped enterprise/sandbox evidence and explicit multi-team dependencies.
+- Chapter 5, portfolio alignment: RICE with shared prerequisites, subgroup guardrails, package-versus-component attribution and aggregate/segment mix reversals.
+- Chapter 6, organizational economics: net annual value after ongoing costs, six-item dependency chains, matched observation windows, validity gates and separately identified cash timing.
+- Chapter 7, board stewardship: probability-weighted upside minus downside, contractual gates, non-inferiority versus superiority, multiple customer-risk constraints and consent/service obligations in acquisition integration.
+
+Every answer has a fixed data key and feedback explaining the particular denominator, dependency, risk or inference mistake. English materials and messages remain in the existing bilingual presentation. Mathematical keys have passed independent table-based tests; browser/reload/keyboard verification is next.
+
+New slots (level → existing case, all replacing only task three):
+
+| Product chapter | 2 | 4 | 6 | 8 | 10 | 12 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 3 · Product Manager | b18 · priority | b32 · A/B | b40 · funnel | b43 · priority | s04 · A/B | s06 · funnel |
+| 4 · Senior PM | b26 · priority | b29 · A/B | b33 · funnel | b37 · priority | b53 · A/B | s08 · funnel |
+| 5 · Group PM | b34 · priority | b46 · A/B | b51 · funnel | b58 · priority | b67 · A/B | s10 · funnel |
+| 6 · Head of Product | b20 · priority | b47 · A/B | b54 · funnel | b64 · priority | b68 · A/B | s12 · funnel |
+| 7 · CPO | b38 · priority | b57 · A/B | b61 · funnel | b66 · priority | b70 · A/B | s14 · funnel |
+
+Verification stage: PASS.
+- `node tests/career-practice.test.cjs`: all 42 actual even-level slots; independent table-based keys, unique priority orders, RICE/confidence/net/risk arithmetic, all experiment guardrails and maturity/validity gates, matched funnel denominators, aggregate-mix reconciliation, comparable English option lengths, untouched pilot data hash and full track/mode guards. Numerical explanations were also reviewed against the displayed tables.
+- `node tests/career-practice-browser.cjs`: all 42 native case → tone → replacement flows, 42 failed and 42 successful attempts, incomplete inputs, edit/retry, fixed attempt order, phone/touch with no page overflow, unchanged chapter scores, reload and exactly-once XP. Legacy award flags, three-failure skip, cloud/local completion union, original sentence tasks at odd levels in every Product chapter and in other tracks/random practice, plus keyboard ordering of the CPO build-or-buy task all pass.
+- `node tests/practice-browser.cjs`: all 15 existing Additional tasks, 44 correct/incorrect step checks, keyboard/touch, state reload, track isolation, legacy cases and cloud-merge logic pass.
+- `node tests/practice-data.test.cjs` and `CAREER_BASELINE=/tmp/career-baseline.html node tests/career-content.test.cjs`: all original content contracts pass (470 career cases / 678 steps, 15 Additional tasks / 22 steps). Deterministic content regeneration leaves career-content.js unchanged.
+- Active phone layouts inspected for all three CPO formats; JavaScript syntax and diff checks pass. Real Firebase login/sync and physical iOS/Android hardware were not exercised; deterministic tests block remote Firebase/fonts and cover local persistence plus merge logic.
+
+Ready for the existing main → GitHub Pages publication. No backend, styling or other-track content changes.

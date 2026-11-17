@@ -29,6 +29,8 @@ const base=process.env.CAREER_URL||'http://127.0.0.1:8000/';
  async function solve(task,wrong=false,edit=false){
   for(const [i,s] of task.steps.entries()){
    await tap('check');assert.ok(await page.locator('#pr-error').isVisible());assert.equal(await page.evaluate(()=>ui.practice.steps[ui.practice.index].checked),false);
+   const widths=await page.evaluate(()=>[document.documentElement.scrollWidth,innerWidth,document.getElementById('app').scrollWidth,document.getElementById('app').clientWidth]);
+   assert.ok(widths[0]<=widths[1]&&widths[2]<=widths[3]+1,task.id+' active layout '+JSON.stringify(widths));
    const order=await page.evaluate(()=>ui.practice.steps.map(st=>st.order.slice()));
    if(s.kind==='select'){
     const bad=s.options.find(o=>!s.key.includes(o.id)).id;
@@ -77,8 +79,9 @@ const base=process.env.CAREER_URL||'http://127.0.0.1:8000/';
  for(let i=1;i<=3;i++){await solve(orderTask,true);assert.equal(await page.evaluate(()=>ui.cur.x.practiceTries),i);if(i<3){assert.equal(await page.locator('[data-pr-action="lesson-finish"]').count(),0);await tap('retry');}}
  assert.equal(await page.evaluate(()=>S.xp),noGain);assert.equal(await page.evaluate(id=>S.practiceDone.includes(id),orderTask.id),false);
  await tap('lesson-finish');assert.equal(await page.evaluate(()=>ui.view),'levels');
- // Odd levels, chapter 3 onward, other tracks and random practice keep their original sentence task.
- for(const [track,id,mode] of [['product','b01','camp'],['product','b18','camp'],['dev','b03','camp'],['pm','b03','camp'],['an','b03','camp'],['ba','b03','camp'],['product','b03','rand']]){
+ // Odd levels in every chapter, other tracks and random practice keep their original sentence task.
+ const oddControls=await page.evaluate(()=>CAREER_CONTENT.tracks.product.plan.map(p=>['product',p.b[0],'camp']));
+ for(const [track,id,mode] of [...oddControls,['dev','b03','camp'],['pm','b03','camp'],['an','b03','camp'],['ba','b03','camp'],['product','b03','rand']]){
   await firstTwo(await startLesson(track,id,mode));assert.equal(await page.evaluate(()=>ui.cur.x.stage),'build');assert.ok(await page.getByText('Build the sentence',{exact:true}).isVisible());
  }
  // Shared component still gives exactly the original three Additional tasks per track.
@@ -86,10 +89,11 @@ const base=process.env.CAREER_URL||'http://127.0.0.1:8000/';
  // A zero-XP legacy replacement completion also survives the existing cloud/local union.
  const union=await page.evaluate(id=>{const a=defaultState(),b=defaultState();a.xp=10;b.xp=20;a.practiceDone=[id];return better(a,b).practiceDone.includes(id);},sample.id);assert.ok(union);
  // Native keyboard operation inside a career order task.
- await page.setViewportSize({width:1200,height:900});await firstTwo(await startLesson('product',orderTask.caseId));
- for(const id of orderTask.steps[0].keys[0]){await page.locator(`[data-pr-action="add"][data-pr-id="${id}"]`).focus();await page.keyboard.press('Enter');}
+ const advancedOrder=tasks.filter(t=>t.format==='priority').at(-1);
+ await page.setViewportSize({width:1200,height:900});await firstTwo(await startLesson('product',advancedOrder.caseId));
+ for(const id of advancedOrder.steps[0].keys[0]){await page.locator(`[data-pr-action="add"][data-pr-id="${id}"]`).focus();await page.keyboard.press('Enter');}
  await page.locator('[data-pr-action="check"]').focus();await page.keyboard.press('Space');assert.match(await page.locator('#pr-feedback').innerText(),/Correct/);
  fs.mkdirSync('/tmp/product-career-practice',{recursive:true});await page.screenshot({path:'/tmp/product-career-practice/order.png'});
- assert.deepEqual(errors,[]);console.log('PASS: all 12 Product pilot slots; 3 formats, legacy awards, 3-attempt skip, keyboard/touch, reload, scoped controls and original Additional counts.');
+ assert.deepEqual(errors,[]);console.log('PASS: all 42 Product career slots; 3 formats, legacy awards, 3-attempt skip, keyboard/touch, reload, scoped controls and original Additional counts.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exit(1)});
