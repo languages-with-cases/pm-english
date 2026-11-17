@@ -1,9 +1,9 @@
-/* Third-task variants: explicit even-level slots throughout the Product career. */
+/* Third-task variants: explicit even-level slots throughout the Product and Project careers. */
 function careerPracticeFor(cur) {
-  if (!cur || CUR_TRACK !== 'product' || cur.mode !== 'camp') return null;
+  if (!cur || (CUR_TRACK !== 'product' && CUR_TRACK !== 'pm') || cur.mode !== 'camp') return null;
   for (var i = 0; i < CAREER_PRACTICE_DATA.length; i++) {
     var task = CAREER_PRACTICE_DATA[i];
-    if (task.caseId !== cur.c.id) continue;
+    if (task.track !== CUR_TRACK || task.caseId !== cur.c.id) continue;
     var chapter = PLAN[task.chapter - 1];
     if (!chapter || task.level % 2 !== 0) return null;
     var ids = chapter.b.concat(chapter.s, [chapter.boss]);
@@ -49,7 +49,7 @@ function careerPracticeComplete() {
 function careerPracticeView(cur) {
   var p = cur.x.practiceAttempt, task = cur.x.careerTask;
   if (!p || !task) return '';
-  var h = lxHead(cur, 3) + '<section class="practice"><h1 id="pr-title" tabindex="-1">' + esc(task.title) +
+  var h = lxHead(cur, 3) + '<section class="practice' + (task.track === 'pm' ? ' pr-career-project' : '') + '"><h1 id="pr-title" tabindex="-1">' + esc(task.title) +
     '</h1><p lang="ru">' + esc(task.ru) + '</p>';
   if (!p.finished) return h + practiceStepBody(p) + '</section>';
   h += '<section class="pr-feedback" role="status"><h2 id="pr-result" tabindex="-1">' +

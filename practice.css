@@ -46,3 +46,6 @@
 .pr-mock-input {padding:12px;border:1px solid #8490a6;border-radius:8px;min-height:48px}
 .pr-validation {color:#a71935;font-size:14px}
 .pr-mock-button {display:inline-block;margin-top:12px;padding:8px 18px;background:var(--blue);color:white;border-radius:8px}
+
+/* Keep status categories reachable beside long Project career reports on phones. */
+.pr-career-project .pr-match > [aria-label="Matching targets"] {position:sticky;top:12px}
