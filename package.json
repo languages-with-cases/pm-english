@@ -1,0 +1,28 @@
+{
+  "name": "pm-english",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static professional-English career game",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "python3 -m http.server 8000 --bind 127.0.0.1",
+    "build:content": "node scripts/build-career.cjs",
+    "check": "node scripts/check-structure.cjs",
+    "test": "node --test --test-concurrency=1 tests/unit/*.test.cjs",
+    "test:browser:career": "node tests/browser/career-browser.cjs",
+    "test:browser:additional": "node tests/browser/practice-browser.cjs",
+    "test:browser:product": "CAREER_TRACK=product node tests/browser/career-practice-browser.cjs",
+    "test:browser:project": "CAREER_TRACK=pm node tests/browser/career-practice-browser.cjs",
+    "test:browser:ba": "CAREER_TRACK=ba node tests/browser/career-practice-browser.cjs",
+    "test:browser:parity": "node tests/browser/refactor-parity.cjs",
+    "test:browser:ui": "node tests/browser/project-career-ui.cjs && node tests/browser/business-analyst-career-ui.cjs && node tests/browser/career-touch.cjs",
+    "format": "prettier --write index.html src assets/styles scripts tests package.json .prettierrc.json",
+    "format:check": "prettier --check index.html src assets/styles scripts tests package.json .prettierrc.json"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1",
+    "prettier": "3.10.1"
+  }
+}
