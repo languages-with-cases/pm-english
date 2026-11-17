@@ -180,3 +180,23 @@ Verification stage: PASS.
 - Active phone layouts inspected for all three CPO formats; JavaScript syntax and diff checks pass. Real Firebase login/sync and physical iOS/Android hardware were not exercised; deterministic tests block remote Firebase/fonts and cover local persistence plus merge logic.
 
 Ready for the existing main → GitHub Pages publication. No backend, styling or other-track content changes.
+
+## Project career task-three expansion — 2026-11-17
+
+Implementation stage: add 42 distinct Project Management exercises in `project-career-practice-data.js`, at levels 2, 4, 6, 8, 10 and 12 of each of seven chapters. Levels 2/8 analyze a Gantt/dependency plan; 4/10 match status messages; 6/12 select a feasible scope-change email. Each of the three existing Project formats has 14 independent variants. Tasks use the current shared select/match handlers, feedback, retry, state-save and XP rules. Only a track-aware slot lookup and an optional day range/label on static Gantt charts extend the controller/renderer. Existing Additional charts retain their twelve-day June default. Changed/new script URLs are versioned.
+
+Difficulty grows from single dependency chains, simple role limits and four clear status items to parallel joins and float, multiple role/spend/date constraints, six/seven status items with reusable categories, program-level dependencies, resource reservations, authorized release windows, contract/security controls, margin floors, protected cash and accountable executive decisions. Materials and answer options are English; instructions and explanations follow the existing bilingual pattern. Calendar conventions, approved windows, reserved starts, resource limits and permission constraints are explicit in each task.
+
+Scope boundaries: all 42 published Product variants remain exactly unchanged; odd Project levels, the first two stages, unrelated tracks, random practice, the 15 Additional tasks, old progress, chapter thresholds and existing XP awards remain unchanged. Separate task IDs and the track-aware hook prevent collisions between shared case IDs. Legacy sentence-award flags still prevent duplicate XP.
+
+Independent schedule and feasibility checks pass for all 42 tasks; all keys and status classifications have been reviewed against the case materials. Browser regression and persistence checks are running.
+
+Verification stage: PASS.
+- Independent data checks cover all 42 actual Project even-level slots, every correct/wrong/incomplete key, dependency propagation from the displayed Gantt baselines, reserved starts, every authorized release window, unique feasible plans under every role/date/spend/margin/cash/control limit, four status categories and reused categories in later chapters. All 42 Product task records retain their exact pre-change hash. Numerical explanations and status classifications were reviewed against the materials.
+- `CAREER_TRACK=pm node tests/career-practice-browser.cjs`: all 42 lessons pass through their original case and tone stages into the replacement, then through incomplete/wrong/edit/retry/correct attempts, stable attempt order, exactly-once XP, unchanged chapter points, touch/phone width and reload. Legacy XP flags, three-failure skip, keyboard matching, odd Project levels in all seven chapters, other tracks and random practice controls pass.
+- `node tests/career-practice-browser.cjs`: all 42 Product variants also pass on the combined application. `node tests/practice-browser.cjs`: all 15 Additional tasks pass, including 44 step checks, keyboard/touch, legacy cases, reload/track switching and cloud merge behavior.
+- `node tests/project-career-ui.cjs`: Project/Product shared-case-ID isolation survives reload; extended Gantt charts support keyboard horizontal scrolling; too many selections are rejected until edited; three advanced phone layouts pass. Status categories remain visible beside long Project reports via a narrowly scoped sticky target column. Existing Additional June charts retain 12 days and other tracks keep their styling.
+- Product/Project practice unit suites, Additional unit suite and the 470-case / 678-step career content contract suite pass. Generated career content is unchanged. JavaScript syntax and diff checks pass.
+- Real signed-in Firebase round trips and physical mobile hardware were not tested. Browser tests cover local storage and merge behavior while blocking remote Firebase/fonts.
+
+Ready for main and the existing GitHub Pages deployment. No new backend or input mechanism; the light-blue application background is preserved.

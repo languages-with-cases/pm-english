@@ -52,3 +52,15 @@ node tests/career-practice-browser.cjs
 ```
 
 There are 42 distinct data-driven variants at chapter-local even levels in all seven Product chapters, including 30 progressively harder variants in chapters 3–7. Tests independently check basic and confidence-adjusted scoring, RICE, net value, probability-weighted upside/downside, all prerequisites, mandatory controls, positive-effect/business/non-inferiority thresholds, multiple guardrails, validity gates, funnel denominators and aggregate/segment mix shifts. They also lock the published 12 pilot variants and derive exact slots from the actual chapter plans, then use the normal case → tone → task-three flow. They cover failed/incomplete answers, edits/retries, legacy XP flags, unchanged chapter points, reload, three-attempt skipping, touch and keyboard, and unchanged third tasks outside those explicit Product career slots. The existing Additional practice tests remain applicable.
+
+## Project Management career
+
+```sh
+node tests/project-career-practice.test.cjs
+CAREER_TRACK=pm node tests/career-practice-browser.cjs
+node tests/project-career-ui.cjs
+# Product regression on the same combined app:
+node tests/career-practice-browser.cjs
+```
+
+All seven Project chapters replace task three at levels 2, 4, 6, 8, 10 and 12: 42 authored variants, 14 each of dependency/Gantt analysis, scope-response selection and status matching. Independent tests propagate schedule changes from the displayed baseline and authorized windows; validate every binding role/cost/date/margin/cash/control limit; exercise matching keys; derive actual slots from PLAN; and lock all 42 Product task data against changes. Browser coverage includes incomplete and excessive selections, pair changes and reusable categories, full case → tone → task-three paths, failed/successful retries, legacy XP, reload, shared-ID track isolation, 32-day Gantt keyboard scrolling and original twelve-day Additional charts.

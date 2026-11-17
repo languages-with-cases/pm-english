@@ -61,8 +61,10 @@ function practiceTable(a) {
       h += (i === 0 ? '<th scope="row">' : '<td>') + esc(c) + (i === 0 ? '</th>' : '</td>');
     });
     if (a.kind === 'gantt') {
-      h += '<td><div class="pr-gantt" aria-label="June ' + row[4] + ' through ' + row[5] + '">';
-      for (var day = 1; day <= 12; day++) h += '<span class="' + (day >= row[4] && day <= row[5] ? 'filled' : '') + '">' + day + '</span>';
+      var days = a.endDay || 12, dayLabel = a.dayLabel || 'June ';
+      h += '<td><div class="pr-gantt"' + (a.endDay ? ' style="grid-template-columns:repeat(' + days + ',24px)"' : '') +
+        ' aria-label="' + esc(dayLabel) + row[4] + ' through ' + row[5] + '">';
+      for (var day = 1; day <= days; day++) h += '<span class="' + (day >= row[4] && day <= row[5] ? 'filled' : '') + '">' + day + '</span>';
       h += '</div></td>';
     }
     h += '</tr>';
