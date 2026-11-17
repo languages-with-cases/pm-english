@@ -1,0 +1,134 @@
+[
+  {
+    "w": "estimand",
+    "ru": "целевая величина оценки",
+    "how": "Точно определённый эффект или показатель, который оценивает исследование: population, outcome, treatment и окно. Смена mean на median меняет вопрос.",
+    "ex": "Changing the metric after seeing the result changes the estimand."
+  },
+  {
+    "w": "grain",
+    "ru": "гранулярность строки",
+    "how": "Что представляет одна строка данных: заказ, позицию заказа, событие или пользователя. JOIN может менять grain и повторять суммы.",
+    "ex": "The joined table is at item grain, not order grain."
+  },
+  {
+    "w": "atomicity",
+    "ru": "атомарность",
+    "how": "Операция применяется целиком или не применяется; для конкурентных финансовых действий нужна корректная транзакционная граница и constraints.",
+    "ex": "We need server-side atomicity for coupon redemption."
+  },
+  {
+    "w": "characterization tests",
+    "ru": "тесты текущего поведения",
+    "how": "Фиксируют наблюдаемое поведение legacy-кода до изменения. Они не доказывают, что старое правило бизнес-корректно.",
+    "ex": "Characterization tests protect the billing behavior we have not yet fully understood."
+  },
+  {
+    "w": "idempotency",
+    "ru": "идемпотентность",
+    "how": "Повтор одного logical request не создаёт повторного бизнес-эффекта. Request identity и concurrency входят в контракт.",
+    "ex": "Idempotency prevents a retry from creating another charge."
+  },
+  {
+    "w": "scope swap",
+    "ru": "замена объёма работ",
+    "how": "Согласованная замена одной части scope на другую с оценкой effort, dependencies и acceptance. Равное количество дней не гарантирует равную ценность.",
+    "ex": "A scope swap needs client approval before the replacement work starts."
+  },
+  {
+    "w": "critical path",
+    "ru": "критический путь",
+    "how": "Последовательность зависимых работ, определяющая ближайшую возможную дату завершения при выбранных assumptions. Не каждая задержка сдвигает релиз на всю свою длительность.",
+    "ex": "This interface is on the program critical path."
+  },
+  {
+    "w": "cost to complete",
+    "ru": "затраты до завершения",
+    "how": "Оценка ещё необходимых расходов с учётом scope и рисков. Уже потраченное отдельно от будущего решения.",
+    "ex": "We need a cost-to-complete forecast before deciding the recovery budget."
+  },
+  {
+    "w": "guardrail",
+    "ru": "ограничивающий показатель",
+    "how": "Заранее согласованная граница допустимого ухудшения safety, quality или customer outcome при оптимизации другой метрики.",
+    "ex": "Retention remains a launch guardrail."
+  },
+  {
+    "w": "opportunity cost",
+    "ru": "альтернативные издержки",
+    "how": "Ценность лучшей реальной альтернативы, от которой отказываются при расходовании ограниченной capacity или денег.",
+    "ex": "Existing engineers still have an opportunity cost."
+  },
+  {
+    "w": "contribution margin",
+    "ru": "маржинальная прибыль",
+    "how": "Выручка минус относимые переменные расходы. Revenue uplift сам по себе не profit, особенно при дополнительном обслуживании.",
+    "ex": "We should evaluate contribution margin, not only revenue per user."
+  },
+  {
+    "w": "stopping rule",
+    "ru": "правило остановки",
+    "how": "Заранее выбранное условие окончания сбора или анализа данных. Изменение после удобного результата меняет error guarantees.",
+    "ex": "The stopping rule was agreed before the test began."
+  },
+  {
+    "w": "confidence interval",
+    "ru": "доверительный интервал",
+    "how": "Диапазон метода с заданным покрытием при его допущениях. Ширина и downside важны для решения, не только знак оценки.",
+    "ex": "The confidence interval includes both small harm and a possible gain."
+  },
+  {
+    "w": "selection bias",
+    "ru": "смещение отбора",
+    "how": "Несопоставимость выборки или групп из-за механизма отбора. Высокие траты self-selected пользователей не доказывают эффект функции.",
+    "ex": "Wishlist use is associated with spending, but selection bias remains."
+  },
+  {
+    "w": "resource semantics",
+    "ru": "смысл ресурса API",
+    "how": "Какую сущность или коллекцию представляет endpoint и что означает её отсутствие. По этому согласуют response schema, status и client behavior.",
+    "ex": "We must agree resource semantics before choosing between an empty collection and not found."
+  },
+  {
+    "w": "rollback window",
+    "ru": "окно отката",
+    "how": "Период, когда ещё хватает времени и условий безопасно восстановить прежнее состояние. Включает latest safe decision point, а не только команду rollback.",
+    "ex": "The rollback window closes before migration would finish."
+  },
+  {
+    "w": "traceability",
+    "ru": "прослеживаемость",
+    "how": "Связь потребности, решения, требования, изменения и проверки через стабильные ссылки и владельцев. Совпадение числа tests и requirements не доказывает coverage.",
+    "ex": "Traceability links the workshop decision to its acceptance tests."
+  },
+  {
+    "w": "data lineage",
+    "ru": "происхождение и преобразования данных",
+    "how": "Путь от источников через преобразования к метрике и её consumers. Нужен для impact analysis и диагностики неверного числа.",
+    "ex": "Data lineage shows which reports depend on the renamed column."
+  },
+  {
+    "w": "runway",
+    "ru": "срок работы на доступных деньгах",
+    "how": "Сколько времени компания может финансировать деятельность в конкретном cash-flow сценарии. Зависит от burn, поступлений и обязательств.",
+    "ex": "Eight months of runway gives time for a staged response, not a revenue guarantee."
+  },
+  {
+    "w": "decision rights",
+    "ru": "полномочия принятия решений",
+    "how": "Какие решения кто вправе принимать и какие требует escalation. Delegate ownership без authority оставляет скрытый bottleneck.",
+    "ex": "Decision rights make the director accountable within clear limits."
+  },
+  {
+    "w": "reconciliation",
+    "ru": "сверка",
+    "how": "Сопоставление записей и правил между источниками с объяснением разницы. Подгонка totals или average разных definitions не сверка.",
+    "ex": "The reconciliation bridge separates timing differences from cancelled contracts."
+  },
+  {
+    "w": "sunk cost",
+    "ru": "невозвратные затраты",
+    "how": "Уже понесённые невозвращаемые расходы. Для следующего выбора важны будущая value, remaining cost и obligations.",
+    "ex": "Past spending alone does not justify continuing the project."
+  }
+]

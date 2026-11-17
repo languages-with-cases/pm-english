@@ -1,0 +1,651 @@
+{
+  "words": {
+    "p-value": {
+      "ru": "p-значение",
+      "how": "При заданной нулевой гипотезе и допущениях теста: вероятность результата не менее экстремального, чем наблюдаемый. Это не вероятность истинности гипотезы и не размер эффекта.",
+      "ex": "The p-value is conditional on the null model, not the probability that the null is true."
+    },
+    "statistical significance": {
+      "ru": "статистическая значимость",
+      "how": "Результат прошёл заранее выбранный статистический критерий при допущениях модели. Это не гарантия причинности, практической пользы или отсутствия случайной ошибки.",
+      "ex": "Statistical significance does not tell us whether the effect is commercially useful."
+    },
+    "confidence interval": {
+      "ru": "доверительный интервал",
+      "how": "Диапазон, рассчитанный методом с указанным долгосрочным покрытием при его допущениях. Для принятия решения важны ширина, знак эффекта и цена ошибки, а не только наличие нуля.",
+      "ex": "The interval includes small harm as well as a possible gain."
+    },
+    "sunk cost": {
+      "ru": "невозвратные затраты",
+      "how": "Уже понесённые затраты, которые нельзя вернуть. Сам факт прежних расходов не определяет следующий выбор; сравнивают будущие выгоды, оставшиеся расходы и обязательства.",
+      "ex": "Past spending is sunk; compare remaining cost and future value."
+    },
+    "idempotency": {
+      "ru": "идемпотентность",
+      "how": "Повтор одной логической операции не создаёт дополнительного бизнес-эффекта. Для платежей важно согласовать request ID, атомарную обработку и ответ при повторе, включая конкурентные запросы.",
+      "ex": "A retry with the same request ID must not create another charge."
+    },
+    "idempotent": {
+      "ru": "идемпотентный",
+      "how": "Повторное выполнение той же логической операции сохраняет один бизнес-эффект. Не означает блокировку всех разных операций с одинаковой суммой.",
+      "ex": "This payment endpoint must be idempotent for retries with the same key."
+    },
+    "anonymized": {
+      "ru": "анонимизированный",
+      "how": "Данные с оценённым риском идентификации, а не просто удалёнными именами. Хеширование или размер группы сами по себе не доказывают невозможность повторной идентификации.",
+      "ex": "We publish the limits of our anonymization assessment."
+    },
+    "revenue recognition": {
+      "ru": "признание выручки",
+      "how": "Отражение выручки по применимой учётной политике и исполнению обязательств. Подписание договора, получение денег и признание выручки могут происходить в разные даты.",
+      "ex": "Bookings, cash receipts and recognized revenue are different measures."
+    },
+    "guardrail": {
+      "ru": "ограничивающая метрика",
+      "how": "Заранее выбранная граница допустимого ухудшения важного результата. Укажите метрику, population, окно и правило решения; нельзя незаметно менять предел после результатов.",
+      "ex": "The rollout must remain within the agreed retention guardrail."
+    },
+    "percentage point": {
+      "ru": "процентный пункт",
+      "how": "Абсолютная разность двух долей в процентах. Рост с 4% до 5% — один процентный пункт и 25% относительно исходного уровня.",
+      "ex": "Conversion rose by one percentage point, from four to five percent."
+    },
+    "likelihood": {
+      "ru": "правдоподобие; вероятность события в обычной речи",
+      "how": "В статистике likelihood сравнивает параметры по наблюдаемым данным и не равен вероятности гипотезы. В risk discussion слово часто означает оценку вероятности события: уточните контекст.",
+      "ex": "We compared model likelihoods without calling them probabilities that the hypotheses are true."
+    },
+    "anonymization": {
+      "ru": "анонимизация",
+      "how": "Снижение риска идентификации с учётом связей и доступных внешних данных. Удаление имён или хеширование не доказывают, что re-identification невозможна.",
+      "ex": "Anonymization needs a risk assessment, not just removing names."
+    },
+    "randomized test": {
+      "ru": "рандомизированный тест",
+      "how": "Эксперимент со случайным назначением вариантов. При корректном дизайне и исполнении позволяет оценивать incremental effect с uncertainty; не гарантирует точную истину автоматически.",
+      "ex": "A randomized test estimates an incremental effect under its design assumptions."
+    },
+    "statistical power": {
+      "ru": "статистическая мощность",
+      "how": "Вероятность отклонить нулевую гипотезу при конкретном истинном эффекте, размере выборки, критерии и допущениях. Без указанного эффекта слово80% неполно.",
+      "ex": "We planned power for the smallest effect worth detecting."
+    },
+    "low-intent": {
+      "ru": "с низким намерением совершить целевое действие",
+      "how": "Аудитория с предположительно меньшей готовностью выполнить конкретное действие сейчас. Нельзя считать всех пользователей paid ads такими без cohort evidence.",
+      "ex": "We need cohort evidence before calling these sign-ups low-intent."
+    },
+    "north star metric": {
+      "ru": "главная метрика ценности продукта",
+      "how": "Показатель delivered customer value с явным event и population. Его связь с customer outcomes и business model надо проверять; он не отменяет quality и financial guardrails.",
+      "ex": "A banking value metric could track customers completing intended financial tasks successfully."
+    }
+  },
+  "extras": {
+    "dev/b29": {
+      "tone": {
+        "ctx": "Nina says marketing announced Friday's coupons. We still have no verified server-side fix for double redemption. Choose an accurate reply.",
+        "opts": [
+          {
+            "t": "I understand the announcement pressure. We need verified atomic redemption before a public launch; I'll assess the fix and give you a confirmed readiness checkpoint.",
+            "ok": true,
+            "c": "Реклама не устраняет financial race. Малый rollout и UI debounce не заменяют проверенную атомарную серверную операцию."
+          },
+          {
+            "t": "I understand the announcement pressure. Let's launch to five percent and detect duplicate redemptions in production while the server-side fix goes through review.",
+            "ok": false,
+            "c": "Реклама не устраняет financial race. Малый rollout и UI debounce не заменяют проверенную атомарную серверную операцию."
+          },
+          {
+            "t": "I understand the announcement pressure. I'll disable repeat clicks in the browser today and keep the public launch while we investigate server-side concurrency.",
+            "ok": false,
+            "c": "Реклама не устраняет financial race. Малый rollout и UI debounce не заменяют проверенную атомарную серверную операцию."
+          }
+        ]
+      },
+      "build": "we need verified atomic redemption before a public launch"
+    },
+    "dev/b35": {
+      "tone": {
+        "ctx": "Nina asks how forty-minute builds affect ten developers who each run twelve builds daily. We have not measured productive time lost. Choose the accurate explanation.",
+        "opts": [
+          {
+            "t": "That is eighty aggregate build-hours daily, but parallel runs and other work mean it is not eighty lost work-hours. I'll measure blocked time before estimating savings.",
+            "ok": true,
+            "c": "40×12×10/60=80 aggregate build-hours, не8. Parallel time и productive loss различаются; capacity improvement не автоматическая cash saving."
+          },
+          {
+            "t": "That is eight lost work-hours daily. I'll use the estimate as the verified productivity saving and put the CI improvement on the next investment slide.",
+            "ok": false,
+            "c": "40×12×10/60=80 aggregate build-hours, не8. Parallel time и productive loss различаются; capacity improvement не автоматическая cash saving."
+          },
+          {
+            "t": "That is eighty lost work-hours daily. I'll multiply that by salary cost and treat the full amount as cash savings once the pipeline is faster.",
+            "ok": false,
+            "c": "40×12×10/60=80 aggregate build-hours, не8. Parallel time и productive loss различаются; capacity improvement не автоматическая cash saving."
+          }
+        ]
+      },
+      "build": "build time is not the same as productive time lost"
+    },
+    "dev/b52": {
+      "tone": {
+        "ctx": "Dana says quiet people are penalized. The role rubric must define expected impact before a rating can depend on visibility. Choose the fair reply.",
+        "opts": [
+          {
+            "t": "Let's review the communicated criteria and your impact evidence. Sharing knowledge matters where the role requires it; speaking frequently isn't itself a performance measure.",
+            "ok": true,
+            "c": "Оценка следует заранее известной рубрике. Видимость не самостоятельный proxy, а критерии нельзя вводить задним числом."
+          },
+          {
+            "t": "Let's review how often you presented work this half. Even with strong delivery, low visibility is enough to keep a quiet engineer below the highest rating.",
+            "ok": false,
+            "c": "Оценка следует заранее известной рубрике. Видимость не самостоятельный proxy, а критерии нельзя вводить задним числом."
+          },
+          {
+            "t": "Let's raise this rating because the feedback feels unfair. We can define the expected sharing behaviors after calibration and apply them retroactively to this review.",
+            "ok": false,
+            "c": "Оценка следует заранее известной рубрике. Видимость не самостоятельный proxy, а критерии нельзя вводить задним числом."
+          }
+        ]
+      },
+      "build": "let us review the communicated criteria and the evidence of impact"
+    },
+    "dev/b64": {
+      "tone": {
+        "ctx": "Sofia asks for the first notice about possible unauthorized access. We have not established exfiltration scope or an authorized notice schedule. Choose accurate wording.",
+        "opts": [
+          {
+            "t": "We are investigating unauthorized access and confirming its scope. I'll coordinate verified wording and the next update time with security, communications and Legal.",
+            "ok": true,
+            "c": "Unknown scope не safety guarantee. Фиксированные24 часа не universal law; duties и next update согласуют с Legal."
+          },
+          {
+            "t": "We have no evidence of data theft, so customers can consider their data safe. I'll ask Legal to approve the wording after the notice is sent.",
+            "ok": false,
+            "c": "Unknown scope не safety guarantee. Фиксированные24 часа не universal law; duties и next update согласуют с Legal."
+          },
+          {
+            "t": "We will wait twenty-four hours before any notice because that is the standard legal investigation period, regardless of the applicable incident deadlines.",
+            "ok": false,
+            "c": "Unknown scope не safety guarantee. Фиксированные24 часа не universal law; duties и next update согласуют с Legal."
+          }
+        ]
+      },
+      "build": "we are investigating unauthorized access and confirming its scope"
+    },
+    "an/b13": {
+      "tone": {
+        "ctx": "Mara asks whether p = 0.03 means a three-percent lift or a ninety-seven-percent probability that B is better. Choose the accurate explanation.",
+        "opts": [
+          {
+            "t": "Neither. Under the null model and test assumptions, a result at least this extreme has probability about three percent; effect size and decision value need separate evidence.",
+            "ok": true,
+            "c": "P-value условен на null, не вероятность случайности результата и не величина lift. Inference зависит также от assumptions и design."
+          },
+          {
+            "t": "It means there is a three-percent probability that the result is random, so B is better with ninety-seven-percent confidence regardless of the effect size.",
+            "ok": false,
+            "c": "P-value условен на null, не вероятность случайности результата и не величина lift. Inference зависит также от assumptions и design."
+          },
+          {
+            "t": "It means B improves clicks by three percent on average. The p-value directly combines the experiment's effect size and probability that the change will succeed.",
+            "ok": false,
+            "c": "P-value условен на null, не вероятность случайности результата и не величина lift. Inference зависит также от assumptions и design."
+          }
+        ]
+      },
+      "build": "a p value is conditional on the null model and test assumptions"
+    },
+    "an/b15": {
+      "tone": {
+        "ctx": "Noah wants to stop the planned two-week fixed-horizon test early because B leads. No early benefit stopping rule was specified. Choose the reply.",
+        "opts": [
+          {
+            "t": "Let's retain the planned window and sample unless an agreed harm rule triggers. Daily operational checks won't become repeated benefit-based launch decisions.",
+            "ok": true,
+            "c": "Нельзя задним числом менять stopping rule. Operational safety monitoring не то же самое, что repeated significance peeking."
+          },
+          {
+            "t": "Let's compromise at day ten and launch if B still leads. A mutually agreed new date makes the existing fixed-horizon significance check valid.",
+            "ok": false,
+            "c": "Нельзя задним числом менять stopping rule. Operational safety monitoring не то же самое, что repeated significance peeking."
+          },
+          {
+            "t": "Let's switch to sequential analysis after seeing this result. Using a flexible method now preserves the original error guarantee without changing thresholds.",
+            "ok": false,
+            "c": "Нельзя задним числом менять stopping rule. Operational safety monitoring не то же самое, что repeated significance peeking."
+          }
+        ]
+      },
+      "build": "let us follow the stopping rule agreed before the test"
+    },
+    "an/b17": {
+      "tone": {
+        "ctx": "Noah confirms the twelve-thousand-dollar customer is real. The primary outcome was mean revenue per user. Choose the defensible analysis plan.",
+        "opts": [
+          {
+            "t": "I'll retain the valid order in the primary analysis, show sensitivity and uncertainty, and explain why it influences the estimate without changing the metric after seeing the result.",
+            "ok": true,
+            "c": "Valid outlier остаётся в estimand. Sensitivity помогает объяснению; median — другой вопрос, не исправленная mean после неудобного результата."
+          },
+          {
+            "t": "I'll remove the customer from the primary analysis because a single unusually large purchase should not decide a representative experiment result for ordinary users.",
+            "ok": false,
+            "c": "Valid outlier остаётся в estimand. Sensitivity помогает объяснению; median — другой вопрос, не исправленная mean после неудобного результата."
+          },
+          {
+            "t": "I'll switch the primary outcome to median revenue now, declaring whichever version wins on that metric the better variant for average revenue per user.",
+            "ok": false,
+            "c": "Valid outlier остаётся в estimand. Sensitivity помогает объяснению; median — другой вопрос, не исправленная mean после неудобного результата."
+          }
+        ]
+      },
+      "build": "we retain valid observations and report sensitivity and uncertainty"
+    },
+    "an/b26": {
+      "tone": {
+        "ctx": "Mara asks whether a post-hoc subgroup p-value of 0.04 establishes a winner after twenty segments were inspected. Choose the reply.",
+        "opts": [
+          {
+            "t": "It's exploratory evidence after multiple comparisons. I'll report the search and uncertainty, then pre-specify and validate the subgroup hypothesis rather than call it a confirmed launch win.",
+            "ok": true,
+            "c": "Exploration разрешена с честной ролью. Ordinary threshold после selection не подтверждает сегмент; ярлык в appendix не исправляет launch claim."
+          },
+          {
+            "t": "It's below five percent, so the subgroup is confirmed. I'll label it exploratory in the appendix while recommending launch to that segment immediately.",
+            "ok": false,
+            "c": "Exploration разрешена с честной ролью. Ordinary threshold после selection не подтверждает сегмент; ярлык в appendix не исправляет launch claim."
+          },
+          {
+            "t": "It's invalid to inspect any segment after an overall neutral result. I'll remove all subgroup findings from the retrospective and avoid a follow-up test.",
+            "ok": false,
+            "c": "Exploration разрешена с честной ролью. Ordinary threshold после selection не подтверждает сегмент; ярлык в appendix не исправляет launch claim."
+          }
+        ]
+      },
+      "build": "this subgroup finding is exploratory and needs independent validation"
+    },
+    "an/b56": {
+      "tone": {
+        "ctx": "The hiring discussion gives no workload evidence proving which capability is the bottleneck. Choose a responsible recommendation.",
+        "opts": [
+          {
+            "t": "I'll compare the funded work and capability constraints before ranking hires. An engineer, analyst or scientist could be first depending on the verified bottleneck.",
+            "ok": true,
+            "c": "Нельзя изобретать50% workload или универсальный ranking профессий. Нужны funded use cases и actual capability evidence."
+          },
+          {
+            "t": "I'll hire the engineer first because half our analysts' time goes to fixing data, even though we have not measured that workload in this discussion.",
+            "ok": false,
+            "c": "Нельзя изобретать50% workload или универсальный ranking профессий. Нужны funded use cases и actual capability evidence."
+          },
+          {
+            "t": "I'll hire the scientist first because advanced modelling is always the highest-leverage data capability once an analytics team already exists.",
+            "ok": false,
+            "c": "Нельзя изобретать50% workload или универсальный ranking профессий. Нужны funded use cases и actual capability evidence."
+          }
+        ]
+      },
+      "build": "we need evidence of the capability bottleneck before ranking hires"
+    },
+    "an/s13": {
+      "tone": {
+        "ctx": "The journalist asks whether re-identification is impossible. No independent audit, minimum group size or tested privacy controls are confirmed in the case. Choose the reply.",
+        "opts": [
+          {
+            "t": "I can't claim impossibility. I'll verify the release controls and risk assessment, explain what is tested and acknowledge remaining limits before making a stronger public statement.",
+            "ok": true,
+            "c": "Нельзя выдумывать external audit и threshold. Даже подтверждённый group size не universal proof против re-identification."
+          },
+          {
+            "t": "Re-identification is impossible because every group contains fifty people and an outside expert tested it, although those controls have not been established in this case.",
+            "ok": false,
+            "c": "Нельзя выдумывать external audit и threshold. Даже подтверждённый group size не universal proof против re-identification."
+          },
+          {
+            "t": "Removing names and emails makes the dataset anonymous by definition. I'll use that explanation without a separate assessment of linkability or external data sources.",
+            "ok": false,
+            "c": "Нельзя выдумывать external audit и threshold. Даже подтверждённый group size не universal proof против re-identification."
+          }
+        ]
+      },
+      "build": "i cannot claim that re identification is impossible"
+    },
+    "an/sc09": {
+      "tone": {
+        "ctx": "Finance counts customer payments; Sales counts contract signatures. Choose a precise bridge rather than assume either automatically equals recognized revenue.",
+        "opts": [
+          {
+            "t": "Let's label bookings, cash receipts and recognized revenue separately, using the applicable accounting policy and a reconciliation bridge so each number supports the right decision.",
+            "ok": true,
+            "c": "Cash, signature и recognition могут приходиться на разные даты. Universal claim без accounting policy неверен; average не создаёт признанную выручку."
+          },
+          {
+            "t": "Finance counts payments, so that is always recognized revenue. Sales can keep signed contracts internally, but the accounting definition needs no further policy review.",
+            "ok": false,
+            "c": "Cash, signature и recognition могут приходиться на разные даты. Universal claim без accounting policy неверен; average не создаёт признанную выручку."
+          },
+          {
+            "t": "Sales counts commitments, so that is always recognized revenue. Finance's payment total should be averaged with bookings to estimate the most realistic monthly outcome.",
+            "ok": false,
+            "c": "Cash, signature и recognition могут приходиться на разные даты. Universal claim без accounting policy неверен; average не создаёт признанную выручку."
+          }
+        ]
+      },
+      "build": "bookings cash receipts and recognized revenue are different measures"
+    },
+    "an/sc07": {
+      "tone": {
+        "ctx": "Legal states a seventy-two-hour regulator duty and customer notice without undue delay. Choose the communication principle.",
+        "opts": [
+          {
+            "t": "We'll meet the regulator's stated deadline and notify affected customers without undue delay, using verified facts and updates rather than treating the two duties as identical.",
+            "ok": true,
+            "c": "72 часа и without undue delay — разные duties. 48 часов не universal law и complete forensics не условие timely interim notice."
+          },
+          {
+            "t": "We'll send both notices at hour seventy-one because seventy-two hours is the common deadline for every audience and gives us time to finish the investigation.",
+            "ok": false,
+            "c": "72 часа и without undue delay — разные duties. 48 часов не universal law и complete forensics не условие timely interim notice."
+          },
+          {
+            "t": "We'll notify customers within exactly forty-eight hours because that is always the legal requirement, even where Legal gave a different applicable duty in this incident.",
+            "ok": false,
+            "c": "72 часа и without undue delay — разные duties. 48 часов не universal law и complete forensics не условие timely interim notice."
+          }
+        ]
+      },
+      "build": "customer notice and regulator notice can have different legal duties"
+    },
+    "ba/b31": {
+      "tone": {
+        "ctx": "The teams debate an empty loan collection. We have not yet agreed whether the endpoint represents a collection or one individual resource. Choose the response.",
+        "opts": [
+          {
+            "t": "Let's agree resource semantics and the existing API contract first. A successful empty collection and a missing individual loan may require different status and response behavior.",
+            "ok": true,
+            "c": "Endpoint resource model определяет contract. Ни200, ни404 не универсальны без semantics; согласуют client behavior и tests."
+          },
+          {
+            "t": "An empty result must always be HTTP 200 with an empty array; 404 is universally incorrect whenever the customer exists, regardless of what resource the endpoint represents.",
+            "ok": false,
+            "c": "Endpoint resource model определяет contract. Ни200, ни404 не универсальны без semantics; согласуют client behavior и tests."
+          },
+          {
+            "t": "No loans must always be HTTP 404; the absence of a loan means the resource was not found, even if the endpoint is an existing customer's loan collection.",
+            "ok": false,
+            "c": "Endpoint resource model определяет contract. Ни200, ни404 не универсальны без semantics; согласуют client behavior и tests."
+          }
+        ]
+      },
+      "build": "let us agree the resource semantics and the interface contract"
+    },
+    "ba/sc06": {
+      "tone": {
+        "ctx": "Marcus asks if hiring helps. We have no approved workload model proving that exactly two hires remove recurring allocation conflicts. Choose the response.",
+        "opts": [
+          {
+            "t": "Hiring may help. I'll show the skill-specific capacity gap, onboarding time and priority trade-offs, then request the roles that address the measured constraint.",
+            "ok": true,
+            "c": "Headcount не автоматически нужный skill или spare capacity. Количество и дата требуют demand model; overtime не hidden reserve."
+          },
+          {
+            "t": "Two hires will eliminate project switching and create all the reserve we need. I'll choose their profiles after Marcus approves the number and start date.",
+            "ok": false,
+            "c": "Headcount не автоматически нужный skill или spare capacity. Количество и дата требуют demand model; overtime не hidden reserve."
+          },
+          {
+            "t": "Hiring won't help because onboarding is slow. I'll keep the current commitments unchanged and ask the existing analysts to absorb future urgent work.",
+            "ok": false,
+            "c": "Headcount не автоматически нужный skill или spare capacity. Количество и дата требуют demand model; overtime не hidden reserve."
+          }
+        ]
+      },
+      "build": "we should measure the capacity gap before committing to new roles"
+    },
+    "ba/sc10": {
+      "tone": {
+        "ctx": "Helen asks why onboarding might be delayed. We do not yet have quantified security exposure or comparable project value. Choose the responsible response.",
+        "opts": [
+          {
+            "t": "I haven't concluded that security wins by label alone. Let's compare the actual exposure, obligations and onboarding value, then bring a defensible option to the decision owner.",
+            "ok": true,
+            "c": "Нужны evidence и usable minimum scope. Равный cut не гарантирует результата; вероятный ущерб нельзя заменять словом security."
+          },
+          {
+            "t": "Security must always take priority because any possible incident could cost more than any customer redesign. I'll delay onboarding for a year without further assessment.",
+            "ok": false,
+            "c": "Нужны evidence и usable minimum scope. Равный cut не гарантирует результата; вероятный ущерб нельзя заменять словом security."
+          },
+          {
+            "t": "I'll split the remaining million equally between both projects. Half the funding should preserve half of each project's value, avoiding an unpopular portfolio decision.",
+            "ok": false,
+            "c": "Нужны evidence и usable minimum scope. Равный cut не гарантирует результата; вероятный ущерб нельзя заменять словом security."
+          }
+        ]
+      },
+      "build": "we need comparable evidence before choosing which project to defer"
+    },
+    "product/b03": {
+      "tone": {
+        "ctx": "The VP needs a decision today. We do not know that two more weeks will reach the planned precision. Choose an honest update.",
+        "opts": [
+          {
+            "t": "I'll compare the observed interval with the planned decision rule and give you options today. I can't promise certainty after an arbitrary extra two weeks.",
+            "ok": true,
+            "c": "Duration не guarantee precision. Arbitrary extension и repeated peeking не исправляют fixed-horizon inference."
+          },
+          {
+            "t": "We need exactly two more weeks to be sure. I'll promise the final result on that date without checking sample size, variance or the original analysis plan.",
+            "ok": false,
+            "c": "Duration не guarantee precision. Arbitrary extension и repeated peeking не исправляют fixed-horizon inference."
+          },
+          {
+            "t": "We should keep testing until significance appears. Once a daily check becomes positive we can stop, even though this fixed-horizon plan had no sequential rule.",
+            "ok": false,
+            "c": "Duration не guarantee precision. Arbitrary extension и repeated peeking не исправляют fixed-horizon inference."
+          }
+        ]
+      },
+      "build": "we should follow the planned analysis rule rather than wait for significance"
+    },
+    "product/b48": {
+      "tone": {
+        "ctx": "The team wants to stop after two positive days. No predefined early benefit rule exists. Choose an accurate, collaborative reply.",
+        "opts": [
+          {
+            "t": "It's an encouraging signal. Let's compare it with our planned sample and stopping rule, while monitoring harm, rather than declare a winner from two early days.",
+            "ok": true,
+            "c": "Calendar cycle полезен, не sufficient criterion. Gradual rollout снижает exposure, но не делает unvalidated uplift causal proof."
+          },
+          {
+            "t": "It's an encouraging signal. One full calendar week will always be enough, so let's agree now to launch whichever version leads on Sunday regardless of precision.",
+            "ok": false,
+            "c": "Calendar cycle полезен, не sufficient criterion. Gradual rollout снижает exposure, но не делает unvalidated uplift causal proof."
+          },
+          {
+            "t": "It's an encouraging signal. A gradual rollout makes statistical uncertainty irrelevant, so let's stop the experiment and validate the lift against last month's production traffic.",
+            "ok": false,
+            "c": "Calendar cycle полезен, не sufficient criterion. Gradual rollout снижает exposure, но не делает unvalidated uplift causal proof."
+          }
+        ]
+      },
+      "build": "let us compare the result with our planned sample and stopping rule"
+    },
+    "product/sc05": {
+      "tone": {
+        "ctx": "The VP asks for a faster result from the banner experiment. We need a valid plan, not a universal fourteen-day rule. Choose the response.",
+        "opts": [
+          {
+            "t": "Let's review the planned sample, primary outcome and guardrails. We can consider a valid sequential design for future tests, but won't manufacture certainty by changing today's stopping rule.",
+            "ok": true,
+            "c": "Ни14 days, ниpositive click не универсальный proof. Sequential design планируют корректно; нужны customer outcomes и guardrails."
+          },
+          {
+            "t": "Every experiment needs exactly fourteen days. After that duration we can treat a positive click difference as proof of customer value even if applications fall.",
+            "ok": false,
+            "c": "Ни14 days, ниpositive click не универсальный proof. Sequential design планируют корректно; нужны customer outcomes и guardrails."
+          },
+          {
+            "t": "Let's end this test at the next favorable daily result and document the change afterward, preserving speed while still saying the method is statistically significant.",
+            "ok": false,
+            "c": "Ни14 days, ниpositive click не универсальный proof. Sequential design планируют корректно; нужны customer outcomes и guardrails."
+          }
+        ]
+      },
+      "build": "click growth alone does not establish a successful lending outcome"
+    },
+    "dev/b01": {
+      "build": "i am blocked on the local setup and need help checking the logs"
+    },
+    "product/sc07": {
+      "build": "we should answer the recurring identity questions and check completion"
+    },
+    "product/s03": {
+      "build": "we should compare margin conversion and mature retention before a wider rollout"
+    },
+    "dev/b20": {
+      "tone": {
+        "ctx": "Tom asks whether to fit the two-day tax refactor and tests into one day. Choose a reply that preserves financial correctness and honest scope.",
+        "opts": [
+          {
+            "t": "I'll assess a smaller tested slice for one day. I won't make tests optional for changed tax behavior; we'll keep the two-day plan if no safe slice fits.",
+            "ok": true,
+            "c": "Изменение финансовой логики требует проверки. Можно уменьшить scope, но нельзя предлагать тесты как необязательное украшение ради даты."
+          },
+          {
+            "t": "I'll extract tax logic in one day and add tests afterward. That preserves the deadline, and staging transactions should reveal any serious rounding error before customers notice.",
+            "ok": false,
+            "c": "Изменение финансовой логики требует проверки. Можно уменьшить scope, но нельзя предлагать тесты как необязательное украшение ради даты."
+          },
+          {
+            "t": "I'll promise the full two-day scope in one day and reduce documentation first. A focused engineer should be able to recover the remaining time during review.",
+            "ok": false,
+            "c": "Изменение финансовой логики требует проверки. Можно уменьшить scope, но нельзя предлагать тесты как необязательное украшение ради даты."
+          }
+        ]
+      },
+      "build": "we can assess a smaller tested slice without dropping financial checks"
+    },
+    "dev/s13": {
+      "tone": {
+        "ctx": "Anna asks you to answer the customer about the changed paid-order total. The correction timing is not yet authorized by finance. Choose an accurate reply.",
+        "opts": [
+          {
+            "t": "We found an inconsistency between the displayed order total and the payment. We're confirming the correction with the payments team and will update you at the agreed checkpoint.",
+            "ok": true,
+            "c": "Нужны подтверждённый impact и authorised remedy. Developer не гарантирует refund timing или отсутствие financial harm по одному UI symptom."
+          },
+          {
+            "t": "We found the cause and will refund the difference today. I'll send that promise now and ask finance to authorize the correction before close of business.",
+            "ok": false,
+            "c": "Нужны подтверждённый impact и authorised remedy. Developer не гарантирует refund timing или отсутствие financial harm по одному UI symptom."
+          },
+          {
+            "t": "The payment system is safe, so no money correction is needed. I'll ask the customer to refresh the page and check whether the displayed total returns to normal.",
+            "ok": false,
+            "c": "Нужны подтверждённый impact и authorised remedy. Developer не гарантирует refund timing или отсутствие financial harm по одному UI symptom."
+          }
+        ]
+      },
+      "build": "we are confirming the payment correction and will update you"
+    },
+    "pm/b27": {
+      "tone": {
+        "ctx": "Chloe asks whether the release can be guaranteed bug-free. No same-day repair SLA has been agreed. Choose a defensible release statement.",
+        "opts": [
+          {
+            "t": "We can't guarantee zero defects. I'll show the verified release criteria, remaining accepted risks and support route, and communicate response targets separately from an unproven repair deadline.",
+            "ok": true,
+            "c": "No known blockers не гарантия no future blockers. Response SLA и resolution ETA различаются; same-day fix нельзя обещать заранее для любого incident."
+          },
+          {
+            "t": "We can't guarantee zero defects, but I can promise every serious issue will be fixed that day. The engineers can confirm the repair scope after launch.",
+            "ok": false,
+            "c": "No known blockers не гарантия no future blockers. Response SLA и resolution ETA различаются; same-day fix нельзя обещать заранее для любого incident."
+          },
+          {
+            "t": "We passed the main tests, so I can guarantee no blocker will appear in production. Remaining small issues can wait for the next normal maintenance cycle.",
+            "ok": false,
+            "c": "No known blockers не гарантия no future blockers. Response SLA и resolution ETA различаются; same-day fix нельзя обещать заранее для любого incident."
+          }
+        ]
+      },
+      "build": "we should separate response targets from an unverified repair deadline"
+    },
+    "ba/sc07": {
+      "tone": {
+        "ctx": "A customer cannot see salary during the outage. Balance integrity and compensation are still being reconciled. Choose an accurate first response.",
+        "opts": [
+          {
+            "t": "I'm sorry access is disrupted. The team is restoring service and checking balances; I'll give you the approved update and claims route without guessing your account's final status.",
+            "ok": true,
+            "c": "Нельзя гарантировать funds, refund или settlement до проверки. Повторные платежи могут увеличить harm; нужна понятная помощь без ложной определённости."
+          },
+          {
+            "t": "Your money is safe and we will refund every late fee. I'll reassure you now and ask the incident team to confirm balance integrity and compensation eligibility afterward.",
+            "ok": false,
+            "c": "Нельзя гарантировать funds, refund или settlement до проверки. Повторные платежи могут увеличить harm; нужна понятная помощь без ложной определённости."
+          },
+          {
+            "t": "The core is being restored, so your salary should already be available. Please retry the transfer repeatedly while operations checks the queue of affected payments.",
+            "ok": false,
+            "c": "Нельзя гарантировать funds, refund или settlement до проверки. Повторные платежи могут увеличить harm; нужна понятная помощь без ложной определённости."
+          }
+        ]
+      },
+      "build": "we are restoring service and checking the affected balances"
+    },
+    "product/b13": {
+      "tone": {
+        "ctx": "Ira requests maintenance capacity while sales has promised three features. We have not verified that both fit. Choose a credible response.",
+        "opts": [
+          {
+            "t": "Let's quantify the debt's delivery cost and assess targeted remediation. I'll make any feature trade-off explicit rather than promise twenty-percent maintenance and the unchanged roadmap both fit.",
+            "ok": true,
+            "c": "Будущая скорость не гарантированная capacity. Reserve выбирают по evidence, а displaced work согласуют до обещания неизменного roadmap."
+          },
+          {
+            "t": "Let's reserve twenty percent of each sprint and keep all three features committed. The maintenance improvement should recover the lost capacity before the quarter ends.",
+            "ok": false,
+            "c": "Будущая скорость не гарантированная capacity. Reserve выбирают по evidence, а displaced work согласуют до обещания неизменного roadmap."
+          },
+          {
+            "t": "Let's defer all maintenance until the three features ship. That keeps the external roadmap credible even if the team must absorb the ongoing debt-related delays.",
+            "ok": false,
+            "c": "Будущая скорость не гарантированная capacity. Reserve выбирают по evidence, а displaced work согласуют до обещания неизменного roadmap."
+          }
+        ]
+      },
+      "build": "we should quantify maintenance cost and make the feature trade off explicit"
+    },
+    "product/b21": {
+      "tone": {
+        "ctx": "Sam asks whether time spent in a banking app is the best product value metric. Choose the message that preserves the difference between activity and successful customer outcomes.",
+        "opts": [
+          {
+            "t": "More time isn't necessarily more value in banking. Let's define successful intended tasks, validate the customer outcome link and keep financial and quality guardrails alongside the value metric.",
+            "ok": true,
+            "c": "Затраченное время может расти из-за friction. Успешная банковская задача лучше выражает value, если event определён и связь проверена."
+          },
+          {
+            "t": "More time shows customers are engaged with the bank. Let's make session duration the primary success measure and use completed tasks only as a secondary diagnostic of the longer journeys.",
+            "ok": false,
+            "c": "Длинные сессии могут означать сложность. Time spent без outcome не доказательство value."
+          },
+          {
+            "t": "More completed tasks is useful activity evidence. Let's count every refresh and retry as another task, increasing our value metric whenever customers interact more often with the banking workflow.",
+            "ok": false,
+            "c": "Повторы и refresh не дополнительные полезные outcomes. Grain и успешный event нужно определить, не стимулировать счётчик активности."
+          }
+        ]
+      },
+      "build": "more time in the app does not necessarily mean more customer value"
+    }
+  },
+  "messages": {
+    "ba/sc06.0": "Three executives request analysts: Olga needs two for a regulation due in four months, Helen needs three for a loan product, and Marketing needs one for a campaign. You have five available analysts and six requested roles. Effort, specialist skills and delivery priorities still need confirmation.",
+    "product/b21.0": "Sam asks which product value metric Northwind Bank should emphasize. Candidates are monthly revenue, total registered customers, time spent in the app, and weekly active customers completing an intended banking task successfully. Which would you use, and what still needs validation?"
+  }
+}

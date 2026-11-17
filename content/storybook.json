@@ -1,0 +1,266 @@
+{
+  "chapters": {
+    "dev": [
+      {
+        "title": "Orbit: a first production lesson",
+        "en": "You join Orbit’s storefront team. The banner release will expose how local assumptions become customer-visible defects. Your early tasks practise reproducible evidence, review and safe communication, not permission to change production alone.",
+        "ru": "Ты приходишь в Storefront-команду Orbit. Релиз баннера свяжет локальные ошибки с последствиями для клиентов. Первые задачи учат воспроизводимости, review и безопасной коммуникации.",
+        "learning": "reproducible evidence and scoped help"
+      },
+      {
+        "title": "From a ticket to a supported feature",
+        "en": "The banner incident is now part of the team’s history, whatever choices you made during it. You own save-for-later and must turn the earlier lesson into explicit mobile states, API dependencies and launch readiness.",
+        "ru": "Инцидент баннера остаётся частью истории команды при любом твоём результате. Теперь save-for-later требует заранее согласовать мобильные состояния, API и готовность к запуску.",
+        "learning": "contracts, tests and end-to-end ownership"
+      },
+      {
+        "title": "Checkout under load",
+        "en": "The save-for-later launch exposed the cost of late assumptions. As an independent developer you now prepare checkout for Black Friday: measurements and external contracts matter more than an attractive implementation.",
+        "ru": "Запуск save-for-later показал цену поздних уточнений. Перед Black Friday ты самостоятельно работаешь с нагрузкой checkout, измерениями и контрактами внешних сервисов.",
+        "learning": "profiling, concurrency and operational trade-offs"
+      },
+      {
+        "title": "A migration with financial consequences",
+        "en": "The Black Friday work made service dependencies visible. You now guide a payment-provider migration; the cache, retry and rollout habits from earlier chapters must survive refunds, reconciliation and a real contract cutoff.",
+        "ru": "После Black Friday зависимости стали заметнее. Миграция платёжного провайдера проверит прежние решения о retries, rollout и cache на refunds, сверке и сроке окончания договора.",
+        "learning": "migration safety and cross-service decisions"
+      },
+      {
+        "title": "Rescuing delivery without another crunch",
+        "en": "The provider migration left operational knowledge that cannot live with one specialist. As Tech Lead you inherit a troubled project, balancing technical quality, delegation and sustainable release coverage.",
+        "ru": "После миграции знания нельзя оставить одному специалисту. Как Tech Lead ты получаешь проблемный проект и отвечаешь за качество, делегирование и устойчивое покрытие релиза.",
+        "learning": "delegation, risk and sustainable delivery"
+      },
+      {
+        "title": "Combining teams and decision rights",
+        "en": "The rescue project and remote handoffs revealed coordination limits. You now lead a merged engineering group; earlier ownership and incident lessons become staffing, performance and governance decisions.",
+        "ru": "Спасение проекта и удалённые handoff показали пределы координации. В объединённой группе прежние уроки ownership превращаются в решения о людях, оценке и полномочиях.",
+        "learning": "staffing, performance and decision rights"
+      },
+      {
+        "title": "Technology accountability at board level",
+        "en": "The merger left both delivery evidence and people risks. As CTO you must explain those limits to the board, prepare succession and lead a ransomware response without trading customer trust for an unsupported guarantee.",
+        "ru": "После слияния есть результаты и кадровые риски. На уровне CTO нужно объяснить их совету, подготовить преемственность и вести ransomware response без ложных гарантий.",
+        "learning": "board evidence, security accountability and succession"
+      }
+    ],
+    "pm": [
+      {
+        "title": "Brightside: a launch coordinator’s notebook",
+        "en": "You join Atlas Digital on the Brightside website. Notes, time zones, versions and approvals will all matter when you become the launch-day contact; small coordination errors can alter a real client commitment.",
+        "ru": "Ты приходишь в Atlas Digital на сайт Brightside. Заметки, часовые пояса, версии и approvals понадобятся в день запуска: небольшая ошибка меняет реальное обещание клиенту.",
+        "learning": "clear records, versions and follow-up"
+      },
+      {
+        "title": "Owning scope after the first launch",
+        "en": "Brightside’s launch made dependencies and client updates concrete. You now run a project with shared specialists; keeping a date requires agreed scope and evidence, not a reassuring color on a report.",
+        "ru": "Запуск Brightside показал цену зависимостей и статусов. Теперь у тебя собственный проект с общими специалистами; дата держится на scope и evidence, не на зелёном статусе.",
+        "learning": "scope negotiation and critical dependencies"
+      },
+      {
+        "title": "Recovering a strained client relationship",
+        "en": "Your first project brought change requests and budget friction into the open. The next client is considering cancellation; you must reconcile contracts, content delays and agency mistakes before negotiating recovery.",
+        "ru": "Первый проект выявил change requests и бюджетные разрывы. Следующий клиент думает об отмене; надо сверить договор, задержки контента и ошибки агентства до переговоров о восстановлении.",
+        "learning": "risk, cost forecasts and recovery choices"
+      },
+      {
+        "title": "A recovery baseline other people can use",
+        "en": "The cancellation threat showed why an honest baseline matters. You now inherit a severely late, over-budget project; informal promises and exhausted specialists must become priced, owned delivery choices.",
+        "ru": "Угроза отмены показала ценность честного baseline. Теперь ты получаешь сильно опоздавший проект с перерасходом: устные обещания нужно превратить в оценённые решения с владельцами.",
+        "learning": "contracts, staffing and a usable baseline"
+      },
+      {
+        "title": "From one critical path to a program",
+        "en": "The recovery project exposed shared-resource limits. You now coordinate five connected projects and an event deadline, where changing one dependency may move a whole program rather than a single task.",
+        "ru": "Восстановление проекта показало ограничения общих ресурсов. Теперь пять связанных проектов и дата мероприятия: одна зависимость может сдвинуть всю программу.",
+        "learning": "program dependencies and steering decisions"
+      },
+      {
+        "title": "Delivery capability is a portfolio asset",
+        "en": "The event delivery created demand for more work, but capacity did not grow automatically. As Head of Delivery, standards, hiring, retention and commercial terms must protect the commitments built in earlier chapters.",
+        "ru": "Успешное мероприятие принесло спрос, но не создало capacity. Как Head of Delivery ты связываешь стандарты, найм, retention и договоры с прежними обязательствами.",
+        "learning": "portfolio capacity and delivery capability"
+      },
+      {
+        "title": "Running Atlas through concentration risk",
+        "en": "The senior-PM departures made continuity risk visible. At executive level a major client’s exit now tests runway, truthful communication and ethical boundaries; revenue pressure does not authorize invented reviews or promises.",
+        "ru": "Уход Senior PM сделал continuity risk заметным. Потеря крупного клиента проверяет runway, честность сообщений и границы: выручка не оправдывает вымышленные отзывы и обещания.",
+        "learning": "runway, concentration and executive accountability"
+      }
+    ],
+    "an": [
+      {
+        "title": "Pulse: every number has a definition",
+        "en": "You join Pulse’s marketplace analytics team. Your first dashboard reaches finance sooner than expected; definitions, join grain and missing coverage are now practical responsibilities, not abstract SQL vocabulary.",
+        "ru": "Ты приходишь в аналитику Pulse. Первый dashboard быстро попадёт к finance: definitions, grain JOIN и неполное покрытие становятся ответственностью, а не абстрактными терминами SQL.",
+        "learning": "definitions, grain and reproducibility"
+      },
+      {
+        "title": "Communicating an uncertain experiment",
+        "en": "The revenue reconciliation taught the team to ask what a number includes. You now present checkout experiments: the same discipline applies to intervals, stopping rules and the difference between an estimate and a launch decision.",
+        "ru": "Сверка выручки научила уточнять состав числа. Теперь эксперименты checkout требуют того же подхода к интервалам, stopping rules и различию между estimate и launch decision.",
+        "learning": "experimental uncertainty and cohort comparisons"
+      },
+      {
+        "title": "Growth and retention can disagree",
+        "en": "The checkout readout did not remove uncertainty; it made it explicit. You now evaluate recommendations whose revenue and retention signals conflict, while tracking repairs reveal how old decisions depended on incomplete data.",
+        "ru": "Отчёт checkout не убрал uncertainty, а сделал её явной. Теперь recommendations дают конфликт revenue и retention, а исправление tracking показывает границы прошлых решений.",
+        "learning": "causal claims, guardrails and measurement gaps"
+      },
+      {
+        "title": "Pricing evidence under executive pressure",
+        "en": "The recommendations work revealed how easy it is to select a flattering segment. A pricing decision now tests your ability to separate scenarios, acquisition effects, churn and a concurrent browser defect.",
+        "ru": "Работа с recommendations показала риск удобного segment cut. Изменение цены проверит различие между scenarios, acquisition, churn и одновременным browser defect.",
+        "learning": "forecast ranges and ethical communication"
+      },
+      {
+        "title": "Building a team others can trust",
+        "en": "Pricing and instrumentation incidents left a decision trail to learn from. As analytics lead, you must turn individual checks into owned metric contracts, prioritization and transparent correction of a reported MAU error.",
+        "ru": "После pricing и tracking осталась история решений. Как lead ты превращаешь личные проверки в metric contracts, приоритеты и честное исправление ошибочного MAU.",
+        "learning": "metric governance and team judgment"
+      },
+      {
+        "title": "Integrating definitions as well as systems",
+        "en": "The MAU correction made governance visible to investors. Pulse now acquires another marketplace; merging identities, definitions and teams requires the same precision at a larger organizational scale.",
+        "ru": "Исправление MAU сделало governance заметным инвесторам. При покупке marketplace нужно объединить не только системы, но identities, definitions и команды.",
+        "learning": "organizational design, privacy and integration"
+      },
+      {
+        "title": "Data stewardship in public",
+        "en": "The acquisition created a larger data estate and new obligations. As CDO you face due diligence, privacy questions and a breach response, using earlier reconciliation habits to distinguish confirmed exposure from promises you cannot prove.",
+        "ru": "После покупки выросли данные и обязательства. На уровне CDO ты ведёшь due diligence, privacy и breach response, отделяя подтверждённое воздействие от недоказуемых обещаний.",
+        "learning": "data value, public evidence and stewardship"
+      }
+    ],
+    "ba": [
+      {
+        "title": "Nordline: from workshop to verified requirement",
+        "en": "You join Nordline Bank as a trainee. A missing fee-disclosure requirement will connect your workshop notes to customer impact, showing why unresolved rules and approval evidence cannot disappear in a polished document.",
+        "ru": "Ты стажёр Nordline. Пропущенное fee disclosure свяжет workshop notes с последствиями для клиента: unresolved rules и evidence согласования нельзя терять при оформлении документа.",
+        "learning": "needs, notes and testable rules"
+      },
+      {
+        "title": "Learning the operators’ actual workflow",
+        "en": "The fee omission changed how the team reviews notes. You now analyse loan operations, where approved screens can still fail real work and acceptance must include observed tasks and boundary rules.",
+        "ru": "После пропуска fee команда иначе проверяет notes. В loan operations даже согласованный экран может мешать реальной работе: acceptance должна учитывать наблюдаемые задачи и границы.",
+        "learning": "elicitation, boundaries and operator workflow"
+      },
+      {
+        "title": "Scope and ownership across a process",
+        "en": "The UAT rejection exposed the gap between documented functions and useful workflow. You now facilitate competing requests and a card-reissue handoff, making constraints, process ownership and change decisions traceable.",
+        "ru": "UAT rejection показал разрыв между функциями и полезным workflow. Теперь конкурирующие запросы и handoff перевыпуска карт требуют прозрачных constraints, ownership и changes.",
+        "learning": "facilitation, traceability and process ownership"
+      },
+      {
+        "title": "When a missing exception moves money",
+        "en": "The card-process investigation showed the cost of an unowned transition. Payment retries now create double charges; your requirements must cover identity, concurrency, failed states and evidence of correction.",
+        "ru": "Разбор карт показал цену бесхозного перехода. Повторы платежей теперь приводят к двойным списаниям: нужны identity, concurrency, failures и evidence исправления.",
+        "learning": "interface semantics and financial exceptions"
+      },
+      {
+        "title": "A core migration needs an exit route",
+        "en": "The double-charge review made financial effects explicit. The core-banking cutover now tests interface contracts, reconciliation and the latest safe rollback point; a nearly completed migration is not itself a reason to continue.",
+        "ru": "После double charges финансовый эффект стал явным. Cutover core banking проверит contracts, сверку и latest safe rollback point: почти завершённая migration не оправдывает продолжение сама по себе.",
+        "learning": "migration contracts, reconciliation and recovery windows"
+      },
+      {
+        "title": "Analysis capability and portfolio commitments",
+        "en": "The migration left interface and data-ownership lessons. As Head of Analysis, you must scale that capability through standards, career paths and explicit allocation when regulatory and commercial work compete.",
+        "ru": "Миграция оставила уроки об interfaces и data owners. Как Head of Analysis ты масштабируешь их через standards, growth и распределение capacity между regulation и коммерцией.",
+        "learning": "standards, people and portfolio allocation"
+      },
+      {
+        "title": "Digital leadership with evidence",
+        "en": "Capacity pressure showed that calling every project important creates no extra people. As digital executive you now face salary-day recovery and budget cuts, preserving customer obligations while making evidence-based forward decisions.",
+        "ru": "Давление capacity показало: слово important не добавляет людей. На executive уровне salary-day recovery и budget cuts требуют сохранить обязательства перед клиентами и оценивать будущую ценность.",
+        "learning": "regulatory evidence, strategic risk and continuity"
+      }
+    ],
+    "product": [
+      {
+        "title": "Northwind: learning to see the onboarding problem",
+        "en": "You join Northwind Bank’s app team. Early cases practise evidence, commitments and customer needs, leading to an onboarding investigation with one engineer and a limited budget. Better conversion must still preserve identity checks and customer trust.",
+        "ru": "Ты приходишь в app-команду Northwind. Первые кейсы об evidence и promises ведут к onboarding с одним инженером и малым бюджетом. Рост conversion должен сохранить identity checks и trust.",
+        "learning": "evidence, customer needs and truthful commitments"
+      },
+      {
+        "title": "Customer value after onboarding",
+        "en": "The onboarding work exposed the difference between completion and delivered value. As Associate PM you now balance enterprise requests, release readiness and a spending-insights versus accounting-export decision, with the earlier funnel lesson still relevant.",
+        "ru": "Onboarding показал различие completion и value. Как Associate PM ты сравниваешь enterprise requests, release readiness и insights с accounting export, используя прежний funnel lesson.",
+        "learning": "validated value and release trade-offs"
+      },
+      {
+        "title": "A pilot is not proof of every claim",
+        "en": "The accounting-export pilot created new commitments. You now own an area and must interpret conversion, retention and noisy experiment results, ending with a loan-banner decision where clicks and customer outcomes diverge.",
+        "ru": "Export pilot создал обязательства. Ты отвечаешь за area и анализируешь conversion, retention и шумные тесты. Loan banner покажет, почему clicks не равны customer outcomes.",
+        "learning": "experiment design and accountable area ownership"
+      },
+      {
+        "title": "Enterprise commitments share a capacity limit",
+        "en": "The loan-banner readout made proxy metrics insufficient evidence of value. As Senior PM you coordinate cross-team delivery and must choose feasible account-data access and payment-approval commitments, including their privacy and audit obligations.",
+        "ru": "Loan-banner readout показал границы proxy metrics. Как Senior PM ты координируешь delivery и выбираешь реальные commitments по API и approvals с privacy и audit obligations.",
+        "learning": "enterprise constraints and cross-team delivery"
+      },
+      {
+        "title": "Leading people without hiding the cost of delivery",
+        "en": "The enterprise work made shared capacity and late requirements visible. You now coach PMs, align roadmaps and address engineering exhaustion; a three-feature promise cannot erase a two-feature sustainable capacity limit.",
+        "ru": "Enterprise work выявила общую capacity и поздние требования. Теперь ты развиваешь PM, согласуешь roadmaps и решаешь exhaustion: обещание трёх features не создаёт capacity сверх двух.",
+        "learning": "coaching, portfolio alignment and sustainable capacity"
+      },
+      {
+        "title": "Pricing and strategy after the crunch",
+        "en": "The exhaustion review linked product planning to human and technical resilience. As Head of Product you turn those lessons into strategy, investment and a staged account-fee decision, where revenue growth and customer loss must be evaluated together.",
+        "ru": "Разбор exhaustion связал product planning с устойчивостью. Как Head of Product ты решаешь strategy, investments и staged fees, оценивая revenue и customer loss вместе.",
+        "learning": "pricing economics, strategy and organizational investment"
+      },
+      {
+        "title": "Board accountability and customer trust",
+        "en": "The fee rollout left both financial evidence and customer questions. As CPO you explain strategic choices, company economics and a privacy incident, treating uncertainty and retained obligations as part of the strategy rather than a communications inconvenience.",
+        "ru": "Fee rollout оставил финансовые результаты и вопросы клиентов. Как CPO ты объясняешь strategy, economics и privacy incident: uncertainty и obligations — часть решения, а не помеха коммуникации.",
+        "learning": "board decisions, public evidence and customer stewardship"
+      }
+    ]
+  },
+  "links": {
+    "dev": {
+      "b13": "The banner incident review is still fresh as you take your first end-to-end feature.",
+      "b22": "The save-for-later launch exposed API assumptions; your next design must make the mobile contract explicit.",
+      "b31": "The Black Friday preparation has made independent deployment and bottlenecks a concrete concern.",
+      "b41": "The provider migration highlighted incomplete ownership; you now coach the people who will support later releases.",
+      "b51": "The rescue project exposed the hidden cost of overtime; a headcount request must account for that experience.",
+      "b61": "After combining engineering teams, the board wants evidence that higher costs produced useful outcomes."
+    },
+    "pm": {
+      "b13": "After coordinating Brightside’s launch you now own the client kickoff yourself.",
+      "b22": "The first project’s change requests make a usable risk and dependency record more important than a reassuring label.",
+      "b31": "The earlier recovery negotiation left both delivery commitments and margin consequences.",
+      "b41": "The troubled-project recovery becomes a lesson for coordinating five connected projects.",
+      "b51": "After the event program, demand increased without automatically adding delivery capacity.",
+      "b61": "The senior-PM departures are now part of Atlas’s continuity history, as you report company economics to the board."
+    },
+    "an": {
+      "b13": "After reconciling the CFO’s dashboard, you now need the same care when explaining statistical evidence.",
+      "b22": "The uncertain checkout result showed why a metric must support a decision rather than just look positive.",
+      "b31": "The recommendations experiment exposed how aggregate gains can hide selection and retention risks.",
+      "b41": "The pricing investigation left an example of why urgent requests still need evidence and a clear question.",
+      "b51": "After the MAU correction, your operating plan must make trust demonstrable rather than personal.",
+      "b61": "The marketplace acquisition enlarged the data estate; the board now asks what this organization should keep funding."
+    },
+    "ba": {
+      "b13": "The fee-disclosure omission changed how Nordline confirms workshop outcomes; you now test your elicitation skills in operations.",
+      "b22": "The UAT rejection is a reminder to involve real operators before a final approval meeting.",
+      "b31": "The card-reissue investigation made missing handoffs visible; interfaces now need equally explicit outcomes.",
+      "b41": "The double-charge review made retry and reconciliation requirements concrete before the core migration.",
+      "b51": "The cutover exposed cross-team knowledge gaps that a larger analysis organization must address systematically.",
+      "b61": "The capacity-allocation review left explicit obligations; digital strategy must now connect them to customer outcomes."
+    },
+    "product": {
+      "b02": "The onboarding investigation exposed how a request can differ from the value a customer needs. Your first major renewal decision now tests that distinction.",
+      "b13": "The accounting-export pilot created commitments; maintenance capacity now has to be compared honestly with sales promises.",
+      "b15": "The loan-banner experiment exposed the gap between a visible feature and a valuable outcome. You now face a competitor-driven request to accelerate delivery.",
+      "b17": "The enterprise API and approval decisions made cross-team constraints visible. A group-level hiring decision must now consider how people work together.",
+      "b19": "The exhaustion review linked investment choices to sustainable capacity. The board now asks whether AI or another intervention best solves slow reporting.",
+      "b21": "The fee rollout showed that revenue and customer value can move differently. At CPO level, even the north-star metric must make that distinction explicit."
+    }
+  }
+}
