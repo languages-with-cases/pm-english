@@ -1,11 +1,11 @@
-/* Third-task pilot: explicit slots in the first two Product career chapters only. */
+/* Third-task variants: explicit even-level slots throughout the Product career. */
 function careerPracticeFor(cur) {
   if (!cur || CUR_TRACK !== 'product' || cur.mode !== 'camp') return null;
   for (var i = 0; i < CAREER_PRACTICE_DATA.length; i++) {
     var task = CAREER_PRACTICE_DATA[i];
     if (task.caseId !== cur.c.id) continue;
     var chapter = PLAN[task.chapter - 1];
-    if (!chapter || task.chapter > 2 || task.level % 2 !== 0) return null;
+    if (!chapter || task.level % 2 !== 0) return null;
     var ids = chapter.b.concat(chapter.s, [chapter.boss]);
     return ids[task.level - 1] === cur.c.id ? task : null;
   }

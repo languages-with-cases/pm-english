@@ -44,11 +44,11 @@ The data test checks all keys, incomplete/incorrect answers, explicit alternate 
 
 Remote fonts and the existing Firebase SDK are blocked by the browser test. Local persistence and cloud-state merge behavior are tested; a real signed-in Firebase round trip and physical iOS/Android devices require a separate manual check. The new practice itself makes no API calls.
 
-## Product chapters 1–2: task-three pilot
+## Product career: task-three variants
 
 ```sh
 node tests/career-practice.test.cjs
 node tests/career-practice-browser.cjs
 ```
 
-This pilot has 12 distinct data-driven variants, only at chapter-local even levels in the first two Product chapters. Its tests independently check arithmetic, dependency order and precise slot scoping, then use the normal case → tone → task-three flow. They cover failed/incomplete answers, edits/retries, legacy XP flags, unchanged chapter points, reload, three-attempt skipping, touch and keyboard, and unchanged third tasks outside the pilot. The existing Additional practice tests remain applicable.
+There are 42 distinct data-driven variants at chapter-local even levels in all seven Product chapters, including 30 progressively harder variants in chapters 3–7. Tests independently check basic and confidence-adjusted scoring, RICE, net value, probability-weighted upside/downside, all prerequisites, mandatory controls, positive-effect/business/non-inferiority thresholds, multiple guardrails, validity gates, funnel denominators and aggregate/segment mix shifts. They also lock the published 12 pilot variants and derive exact slots from the actual chapter plans, then use the normal case → tone → task-three flow. They cover failed/incomplete answers, edits/retries, legacy XP flags, unchanged chapter points, reload, three-attempt skipping, touch and keyboard, and unchanged third tasks outside those explicit Product career slots. The existing Additional practice tests remain applicable.
