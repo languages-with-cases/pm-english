@@ -221,3 +221,9 @@ Verification stage: PASS.
 - Remote Firebase/fonts are blocked in deterministic browser checks. Local save and merge logic were tested; real signed-in Firebase round trips and physical phone hardware were not exercised.
 
 Ready for main and existing GitHub Pages publication. No backend, free-input or unrelated-track content changes.
+
+## Shared architecture and change history — 2026-11-17 17:27:24 UTC
+
+Documentation-only task: add `АРХИТЕКТУРА.md` as the current service/concept/file-map reference, `Изменения.md` as the dated change journal and root `AGENTS.md` as the Codex discovery/update instructions. Bootstrap the journal from verified main commits and previous implementation reports, preserving the distinction between commit time and deployment time. Future code/content/docs changes must carry a journal entry; architecture updates when contracts or composition change. Explicitly distinguish this agent workflow from a Git hook or CI-generated log.
+
+Runtime, content, styles, storage, auth, progression and tests are unchanged. Documentation facts were checked against the current code and data inventory; Markdown links and diff are checked before commit. Full game/browser suites are not necessary for Markdown-only changes.
