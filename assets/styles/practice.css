@@ -1,0 +1,261 @@
+.practice {
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.practice h1 {
+  font-size: 30px;
+}
+.practice h2 {
+  font-size: 21px;
+  margin-top: 24px;
+}
+.practice h3 {
+  font-size: 17px;
+  margin-top: 20px;
+}
+.practice button {
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.practice button:focus-visible,
+.practice [tabindex]:focus-visible,
+.practice summary:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+.practice button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+.pr-task,
+.pr-feedback {
+  background: var(--surface, #f3f5fa);
+  border: 1px solid #dce2ef;
+  border-radius: 20px;
+  padding: 16px;
+  margin: 20px 0;
+}
+.pr-task h2 {
+  margin-top: 0;
+}
+.pr-options {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0;
+}
+.pr-option {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 14px;
+  text-align: left;
+  border: 2px solid #dce2ef;
+  border-radius: 16px;
+  background: white;
+  color: var(--ink);
+  line-height: 1.5;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+.pr-option.selected {
+  border-color: var(--blue);
+  background: #edf2ff;
+}
+.pr-option small {
+  display: block;
+  margin-top: 6px;
+  color: #4a5670;
+}
+.pr-match {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.pr-match .pr-option {
+  margin: 10px 0;
+}
+.pr-sequence {
+  padding-left: 28px;
+}
+.pr-sequence li {
+  padding: 5px 0;
+}
+.pr-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 18px 0;
+  border: 1px solid #dce2ef;
+  border-radius: 12px;
+}
+.practice table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: #fff;
+  white-space: nowrap;
+}
+.practice caption {
+  white-space: normal;
+  padding: 12px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--ink);
+}
+.practice td,
+.practice th {
+  text-align: left;
+  padding: 10px;
+  border-top: 1px solid #dce2ef;
+}
+.practice thead {
+  background: #edf2ff;
+}
+.pr-context {
+  padding: 16px;
+  border-left: 3px solid var(--blue);
+  background: #f6f8ff;
+}
+.pr-code {
+  margin: 18px 0;
+  border-radius: 12px;
+  background: #172238;
+  color: #fff;
+  padding: 14px;
+  overflow-x: auto;
+  font-size: 14px;
+}
+.pr-code ol {
+  padding-left: 35px;
+}
+.pr-code li {
+  padding-left: 8px;
+  white-space: pre;
+}
+.pr-code li::marker {
+  color: #b4c6e7;
+}
+.pr-screens {
+  display: grid;
+  gap: 12px;
+}
+.pr-screens figure {
+  margin: 0;
+  background: #fff;
+  border: 2px solid #dce2ef;
+  border-radius: 16px;
+  padding: 16px;
+}
+.pr-screens pre {
+  white-space: pre-wrap;
+  font: inherit;
+}
+.practice figcaption {
+  font-weight: 700;
+}
+.pr-chart {
+  margin: 18px 0;
+  border: 1px solid #dce2ef;
+  border-radius: 12px;
+  padding: 14px;
+}
+.pr-chart svg {
+  width: 100%;
+  max-width: 420px;
+  display: block;
+  overflow: visible;
+}
+.pr-chart text {
+  font-family: inherit;
+  font-size: 11px;
+  fill: var(--ink);
+}
+.pr-gantt {
+  display: grid;
+  grid-template-columns: repeat(12, 24px);
+  gap: 1px;
+}
+.pr-gantt span {
+  text-align: center;
+  font-size: 11px;
+  background: #f1f3f8;
+  color: #4a5670;
+}
+.pr-gantt .filled {
+  background: var(--blue);
+  color: white;
+}
+.practice .cta {
+  margin-top: 14px;
+}
+.practice summary {
+  min-height: 44px;
+  padding: 10px 0;
+  cursor: pointer;
+}
+.practice dt {
+  font-weight: 600;
+  margin-top: 12px;
+}
+.practice dd {
+  margin: 4px 0 12px 12px;
+}
+.practice blockquote {
+  border-left: 3px solid var(--blue);
+  margin: 16px 0;
+  padding-left: 14px;
+}
+@media (max-width: 400px) {
+  .pr-match {
+    gap: 8px;
+  }
+  .pr-match .pr-option {
+    padding: 10px;
+    font-size: 14px;
+  }
+  .practice h1 {
+    font-size: 27px;
+  }
+}
+.pr-scroll-hint {
+  font-size: 13px;
+  color: #4a5670;
+}
+.pr-mock-label {
+  font-size: 14px;
+  margin: 18px 0 5px;
+}
+.pr-mock-input {
+  padding: 12px;
+  border: 1px solid #8490a6;
+  border-radius: 8px;
+  min-height: 48px;
+}
+.pr-validation {
+  color: #a71935;
+  font-size: 14px;
+}
+.pr-mock-button {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 18px;
+  background: var(--blue);
+  color: white;
+  border-radius: 8px;
+}
+
+/* Keep status categories reachable beside long Project career reports on phones. */
+.pr-career-project .pr-match > [aria-label="Matching targets"] {
+  position: sticky;
+  top: 12px;
+}
+
+/* Long BA criteria remain available while matching later scenarios. */
+.pr-career-ba .pr-match > [aria-label="Matching targets"] {
+  position: sticky;
+  top: 12px;
+  max-height: 50vh;
+  max-height: 50dvh;
+  overflow-y: auto;
+}
