@@ -125,3 +125,26 @@ The user authorized publishing both changes. PR #1 is merged into the career bra
 ## Background update — 2026-11-17
 
 Changed the app background from light lavender `#E6E8FF` to light blue `#E6F3FF`, including the matching transparent gradients above navigation and word-screen actions. Verified computed html/body background on Home, Levels, Words, Progress and Additional practice in 375px Chromium; diff checks pass. User requested the change to the active application.
+
+## Product career task-three pilot — 2026-11-17
+
+Scope requested: only the first two Product Management chapters. Chapter-local levels 2, 4, 6, 8, 10 and 12 replace sentence building (task 3 of 3) with a contextual practical task. The case and tone stages remain first and second. Odd levels, chapter 3 onward, all other tracks, random practice and existing Additional practice retain their prior behavior.
+
+| Chapter | Level | Case | Third-task variant |
+| --- | --- | --- | --- |
+| 1 | 2 | b03 | A/B: inconclusive primary result |
+| 1 | 4 | b05 | Funnel: payment-start bottleneck |
+| 1 | 6 | b07 | Priority: support readiness dependencies |
+| 1 | 8 | b11 | Funnel: campaign activation vs retention counts |
+| 1 | 10 | b16 | Priority: dark-theme prerequisites and alternatives |
+| 1 | 12 | b52 | A/B: verified activation vs duplicate accounts |
+| 2 | 2 | b09 | Priority: vendor-value work |
+| 2 | 4 | b14 | Funnel: identity-verification objective |
+| 2 | 6 | b23 | A/B: support counts versus exposure-normalized rate |
+| 2 | 8 | b31 | Priority: export remediation |
+| 2 | 10 | s01 | Funnel: payment incident |
+| 2 | 12 | s03 | A/B: mature pricing economics and churn |
+
+Implementation: 12 authored variants (four per existing Product format) in `career-practice-data.js`; an explicit slot/mode guard in `career-practice.js`; shared attempt creation and step renderer reused from Additional practice. The existing lesson header remains Task 3 of 3. Main case points, PLAN, chapter thresholds and the first two tasks are unchanged. Completion reuses the prior text-task award slot (+3 XP, existing retry rule); previous sentence XP is not awarded again. Embedded IDs use existing completion persistence/union. After three failed attempts, the stage can be skipped without XP, as with the previous sentence task. No new backend or free input.
+
+Checks so far: independent data/key arithmetic passes for all 12 variants; runtime guard rejects every out-of-scope case/track/mode. Mobile/touch browser walkthroughs pass all 12 lessons from case through tone to embedded task, with incomplete/wrong answers, edits, retry, fixed attempt order, completion, return to levels and reload. Chapter points remain unchanged; legacy award flags prevent duplicate XP. Skip-after-three, keyboard ordering, ordinary sentence-task controls and zero-XP completion union also pass. Full regression also passes: all 15 Additional tasks (44 correct/incorrect step checks and touch/reload checks), 2,034 existing career choices, 1,410 tone choices and ten scenario paths. Original career content data, Additional content and styles remain unchanged.
