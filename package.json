@@ -18,8 +18,10 @@
     "test:browser:ba": "CAREER_TRACK=ba node tests/browser/career-practice-browser.cjs",
     "test:browser:parity": "node tests/browser/refactor-parity.cjs",
     "test:browser:ui": "node tests/browser/project-career-ui.cjs && node tests/browser/business-analyst-career-ui.cjs && node tests/browser/career-touch.cjs",
-    "format": "prettier --write index.html src assets/styles scripts tests package.json .prettierrc.json",
-    "format:check": "prettier --check index.html src assets/styles scripts tests package.json .prettierrc.json"
+    "format": "prettier --write index.html service-worker.js manifest.webmanifest src assets/styles scripts tests package.json .prettierrc.json",
+    "format:check": "prettier --check index.html service-worker.js manifest.webmanifest src assets/styles scripts tests package.json .prettierrc.json",
+    "build:offline": "node scripts/build-offline.cjs",
+    "test:browser:offline": "node tests/browser/offline-browser.cjs"
   },
   "devDependencies": {
     "playwright": "1.62.1",
