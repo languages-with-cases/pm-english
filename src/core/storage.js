@@ -143,6 +143,40 @@ function merge(d) {
 var saving = false,
   dirty = false;
 
+// Cloud acknowledgements must never block subsequent local saves while offline.
+var cloudPending = null,
+  cloudWriting = false;
+async function syncPendingCloud() {
+  if (
+    cloudWriting ||
+    !cloudPending ||
+    (typeof navigator !== "undefined" && navigator.onLine === false)
+  )
+    return;
+  var pending = cloudPending;
+  if (!cloud.user || !cloud.ready || cloud.user.uid !== pending.uid) {
+    cloudPending = null;
+    return;
+  }
+  cloudWriting = true;
+  try {
+    await cloud.fs.setDoc(cloud.fs.doc(cloud.db, "users", pending.uid), {
+      data: JSON.stringify(pending.data.st.product || {}),
+      all: JSON.stringify(pending.data),
+      updated: Date.now(),
+    });
+    if (cloudPending === pending) cloudPending = null;
+  } catch (error) {
+    // Keep the latest local snapshot for the next save or reconnection.
+    cloudWriting = false;
+    return;
+  }
+  cloudWriting = false;
+  if (cloudPending) syncPendingCloud();
+}
+if (typeof window !== "undefined" && window.addEventListener)
+  window.addEventListener("online", syncPendingCloud);
+
 async function persist() {
   var data = JSON.parse(JSON.stringify(packAll()));
   if (store.kind === "claude") {
@@ -151,11 +185,8 @@ async function persist() {
     localStorage.setItem(KEY2, JSON.stringify(data));
   }
   if (typeof cloud !== "undefined" && cloud.user && cloud.ready) {
-    await cloud.fs.setDoc(cloud.fs.doc(cloud.db, "users", cloud.user.uid), {
-      data: JSON.stringify(data.st.product || {}),
-      all: JSON.stringify(data),
-      updated: Date.now(),
-    });
+    cloudPending = { uid: cloud.user.uid, data: data };
+    syncPendingCloud();
   }
 }
 

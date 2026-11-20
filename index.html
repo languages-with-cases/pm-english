@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light" />
     <title>English for IT</title>
+    <meta name="theme-color" content="#eaf4ff" />
+    <link rel="manifest" href="manifest.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap"
@@ -38,7 +40,7 @@
     <script defer src="src/core/catalog.js?v=structure-v1"></script>
     <script defer src="src/app/state.js?v=structure-v1"></script>
     <script defer src="src/core/progression.js?v=structure-v1"></script>
-    <script defer src="src/core/storage.js?v=structure-v1"></script>
+    <script defer src="src/core/storage.js?v=offline-v1"></script>
     <script defer src="src/app/navigation.js?v=structure-v1"></script>
     <script defer src="src/features/cases/controller.js?v=structure-v1"></script>
     <script defer src="src/features/events.js?v=structure-v1"></script>
@@ -51,7 +53,7 @@
     <script defer src="src/features/preparation.js?v=structure-v1"></script>
     <script defer src="src/features/reports.js?v=structure-v1"></script>
     <script defer src="src/features/onboarding.js?v=structure-v1"></script>
-    <script defer src="src/features/progress.js?v=structure-v1"></script>
+    <script defer src="src/features/progress.js?v=offline-v1"></script>
     <script defer src="src/features/career-path.js?v=structure-v1"></script>
     <script defer src="src/features/lesson/controller.js?v=structure-v1"></script>
     <script defer src="src/features/lesson/view.js?v=structure-v1"></script>
@@ -62,7 +64,8 @@
     <script defer src="src/app/render.js?v=structure-v1"></script>
     <script defer src="src/ui/scroll.js?v=structure-v1"></script>
     <script defer src="src/ui/overscroll.js?v=structure-v1"></script>
-    <script defer src="src/app/boot.js?v=structure-v1"></script>
+    <script defer src="src/features/offline.js?v=offline-v1"></script>
+    <script defer src="src/app/boot.js?v=offline-v1"></script>
   </head>
   <body>
     <div class="splash" id="splash"><img alt="" src="assets/images/splash.jpg" /></div>

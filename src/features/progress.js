@@ -129,6 +129,7 @@ function progress() {
       ? "5 words from your last 5 lessons. Tap to turn off."
       : "Turned off. Tap to turn on.") +
     '</span></div><i class="sw"></i></button>';
+  h += offlineHTML();
   h += accountHTML();
   h +=
     '<button class="reset" onclick="resetTap()">' +
@@ -139,7 +140,7 @@ function progress() {
   var msg =
     store.kind === "claude"
       ? "Saved to your Claude account."
-      : cloud.user && cloud.ready
+      : cloud.user && cloud.ready && !cloudPending && navigator.onLine
         ? "Saved to your account and on this device."
         : store.kind === "local"
           ? "Saved on this device only."

@@ -38,3 +38,5 @@ setTimeout(function () {
     e.remove();
   }, 500);
 }, 2100);
+
+initOffline();
